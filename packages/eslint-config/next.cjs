@@ -5,7 +5,8 @@ const project = resolve(process.cwd(), "tsconfig.json");
 /** @type {import("eslint").Linter.Config} */
 module.exports = {
   extends: [
-    "eslint:recommended",
+    "airbnb",
+    "airbnb-typescript",
     "prettier",
     require.resolve("@vercel/style-guide/eslint/next"),
     "eslint-config-turbo",
