@@ -11,12 +11,13 @@
   },
   "scripts": {
     "prepare": "git config --local core.hooksPath .githooks",
+    "turbo": "turbo",
     "build": "turbo build",
     "dev": "turbo dev",
     "test": "jest",
     "lint": "turbo lint",
     "format": "prettier --parser typescript --write \"**/*.{js,cjs,mjs,ts,tsx}\"",
-    "publish-packages": "npm run build:package && changeset version && changeset publish",
+    "publish-packages": "npm run turbo -- build --filter='./packages/*' && changeset version && changeset publish",
     "changeset": "changeset",
     "lint-staged": "lint-staged"
   },
