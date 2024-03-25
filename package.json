@@ -16,9 +16,12 @@
     "test": "jest",
     "lint": "turbo lint",
     "format": "prettier --parser typescript --write \"**/*.{js,cjs,mjs,ts,tsx}\"",
+    "publish-packages": "npm run build:package && changeset version && changeset publish",
+    "changeset": "changeset",
     "lint-staged": "lint-staged"
   },
   "devDependencies": {
+    "@changesets/cli": "^2.27.1",
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "@types/jest": "^29.5.12",
