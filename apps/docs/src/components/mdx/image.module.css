@@ -1,0 +1,5 @@
+.image {
+  margin: var(--spacing-lg) auto;
+  height: auto;
+  max-width: 100%;
+}

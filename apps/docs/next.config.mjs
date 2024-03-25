@@ -1,2 +1,26 @@
+import createMDX from "@next/mdx";
+
+const withMdx = createMDX({
+  experimental: {
+    mdxRs: true,
+  },
+  options: {
+    remarkPlugins: [],
+    rehypePlugins: [],
+  },
+});
+
 /** @type {import('next').NextConfig} */
-export default {};
+const nextConfig = {
+  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  images: {
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "avatars.githubusercontent.com",
+      },
+    ],
+  },
+};
+
+export default withMdx(nextConfig);
