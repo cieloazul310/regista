@@ -23,13 +23,14 @@ export type FrontmatterInput<
   T extends Record<string, any> = Record<string, unknown>,
 > = T & z.infer<typeof defaultFrontmatterSchemaInput>;
 
-export type Metadata<T extends Record<string, any> = Record<string, unknown>> =
-  {
-    frontmatter: Frontmatter<T>;
-    absolutePath: string;
-    slug: string[];
-    href: string;
-  };
+export type Metadata<
+  TFrontmatter extends Record<string, any> = Record<string, unknown>,
+> = {
+  frontmatter: TFrontmatter;
+  absolutePath: string;
+  slug: string[];
+  href: string;
+};
 
 function complementFrontmatter<T extends Record<string, any>>({
   title,
@@ -72,10 +73,10 @@ export default function defineMdx<Z extends ZodRawShape>({
   const varidator = dataSchemaVaridator(frontmatterSchema);
 
   async function getAll(): Promise<
-    (Metadata<RestFrontmatter> & {
+    (Metadata<Frontmatter<RestFrontmatter>> & {
       context: {
-        older: Metadata<RestFrontmatter> | null;
-        newer: Metadata<RestFrontmatter> | null;
+        older: Metadata<Frontmatter<RestFrontmatter>> | null;
+        newer: Metadata<Frontmatter<RestFrontmatter>> | null;
       };
     })[]
   > {

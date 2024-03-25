@@ -13,6 +13,7 @@
     "prepare": "git config --local core.hooksPath .githooks",
     "build": "turbo build",
     "dev": "turbo dev",
+    "test": "jest",
     "lint": "turbo lint",
     "format": "prettier --parser typescript --write \"**/*.{js,cjs,mjs,ts,tsx}\"",
     "lint-staged": "lint-staged"
@@ -20,8 +21,12 @@
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
+    "@types/jest": "^29.5.12",
+    "jest": "^29.7.0",
     "lint-staged": "^15.2.2",
     "prettier": "^3.2.5",
+    "ts-jest": "^29.1.2",
+    "ts-node": "^10.9.2",
     "turbo": "latest"
   },
   "lint-staged": {
