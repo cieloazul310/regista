@@ -28,7 +28,7 @@ export const post = defineMdx({
 
 type: `string`
 
-Specify the path where Markdown/MDX content is stored.
+Specify the path where Markdown/MDX contents are stored.
 
 #### `basePath`
 

@@ -28,7 +28,7 @@ export const author = defineData({
 
 type: `string`
 
-Specify the path where data is stored.
+Specify the path where data are stored.
 
 #### `schema`
 
