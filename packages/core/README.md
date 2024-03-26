@@ -2,7 +2,7 @@
 
 Simple and type-safe Markdown/MDX content management tool for Next.js App Router.
 
-[![npm version](https://badge.fury.io/js/@cieloazul310%2Fregista.svg)](https://badge.fury.io/js/@cieloazul310%2Fregista)
+<https://github.com/cieloazul310/regista>
 
 ## Usage
 
@@ -117,9 +117,9 @@ Dynamic Routes
 
 ## API
 
-- [defineMdx](./docs/api/defineMdx.md)
-- [defineData](./docs/api/defineData.md)
-- [defineDataFromFile](./docs/api/defineDataFromFile.md)
+- [defineMdx](../../docs/api/defineMdx.md)
+- [defineData](../../docs/api/defineData.md)
+- [defineDataFromFile](../../docs/api/defineDataFromFile.md)
 
 ## Reference
 
