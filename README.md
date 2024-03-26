@@ -1,73 +1,131 @@
 # Regista
 
-Markdown/MDX content management package for Next.js App Router.
+Simple and type-safe Markdown/MDX content management tool for Next.js App Router.
 
-## What's inside?
+## Usage
 
-This Turborepo includes the following packages/apps:
+### Example project structure (Next.js App Router)
 
-### Apps and Packages
-
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
-
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
-
-### Utilities
-
-This Turborepo has some additional tools already setup for you:
-
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
-
-### Build
-
-To build all apps and packages, run the following command:
-
-```
-cd my-turborepo
-pnpm build
+```txt
+.
+├── content
+│   ├── author
+│   ├── post
+│   └── categories.yml
+├── public
+│   └── assets
+├── src
+│   ├── app
+│   └── content
+├── next.config.mjs
+├── package.json
+└── tsconfig.json
 ```
 
-### Develop
+### Directories and files
 
-To develop all apps and packages, run the following command:
+- `content/author`
+- `content/post`
+- `content/categories.yml`
+- `src/content/index.ts`
 
-```
-cd my-turborepo
-pnpm dev
-```
+## Getting started
 
-### Remote Caching
+### 1. Installation
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
-
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup), then enter the following commands:
-
-```
-cd my-turborepo
-npx turbo login
+```sh
+npm install @cieloazul310/regista
 ```
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+### 2. Set up
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+```tsx
+// src/content.index.ts
+import * as path from "path";
+import { z, defineMdx } from "@cieloazul310/regista";
 
+export const post = defineMdx({
+  contentPath: path.resolve(process.cwd(), "content/post"),
+  basePath: "/post",
+  schema: {
+    author: z.string().optional(),
+  },
+});
+export type PostFrontmatter = z.infer<typeof post.schema>;
+export type PostMetadata = z.infer<typeof post.metadataSchema>;
 ```
-npx turbo link
+
+### 3. Using with Dynamic routes
+
+```tsx
+// src/app/post/[...slug].tsx
+import NextLink from "next/link";
+import type { Metadata } from "next";
+import { post } from "@/content";
+
+export async function generateStaticParams() {
+  const allPosts = await post.getAll(); // => PostMetadata[]
+  return allPosts;
+}
+
+async function Page({ params }: { params: { slug: string[] } }) {
+  const { slug } = params;
+  const item = await post.useMdx(slug);
+  if (!item) return null;
+  const { content, frontmatter, context } = item;
+  const { title, date, lastmod, author } = frontmatter;
+  const { older, newer } = context;
+
+  return (
+    <>
+      <article>
+        <header>
+          <h1>{title}</h1>
+          <small>
+            <time>{date.toDateString()}</time>
+          </small>
+        </header>
+        <section>{content}</section>
+      </article>
+      <nav>
+        {older && (
+          <div>
+            <p>Older post</p>
+            <NextLink href={older.href}>{older.frontmatter.title}</NextLink>
+          </div>
+        )}
+        {newer && (
+          <div>
+            <p>Newer post</p>
+            <NextLink href={newer.href}>{newer.frontmatter.title}</NextLink>
+          </div>
+        )}
+      </nav>
+    </>
+  );
+}
+
+export default Page;
 ```
 
-## Useful Links
+Dynamic Routes
+<https://nextjs.org/docs/app/building-your-application/routing/dynamic-routes>
 
-Learn more about the power of Turborepo:
+## API
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+- [`defineMdx`](./docs/api//defineMdx.md)
+
+### `defineData`
+
+#### Options
+
+#### Methods
+
+### `defineDataFromFile`
+
+#### Options
+
+#### Methods
+
+[Zod]: https://zod.dev/ "Zod"
+[next-mdx-remote]: https://github.com/hashicorp/next-mdx-remote "next-mdx-remote"
