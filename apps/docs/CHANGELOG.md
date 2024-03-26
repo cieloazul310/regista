@@ -1,5 +1,13 @@
 # docs
 
+## 0.0.3
+
+### Patch Changes
+
+- b9aa96c: add ci
+- Updated dependencies [b9aa96c]
+  - @cieloazul310/regista@0.0.3
+
 ## 0.0.2
 
 ### Patch Changes
