@@ -1,5 +1,5 @@
 ---
-title: defineMdx
+title: defineMdx API
 date: 2024-03-26
 ---
 

@@ -113,19 +113,14 @@ Dynamic Routes
 
 ## API
 
-- [`defineMdx`](./docs/api//defineMdx.md)
+- [defineMdx](./docs/api/defineMdx.md)
+- [defineData](./docs/api/defineData.md)
+- [defineDataFromFile](./docs/api/defineDataFromFile.md)
 
-### `defineData`
+## Reference
 
-#### Options
-
-#### Methods
-
-### `defineDataFromFile`
-
-#### Options
-
-#### Methods
+- [Zod]
+- [next-mdx-remote]
 
 [Zod]: https://zod.dev/ "Zod"
 [next-mdx-remote]: https://github.com/hashicorp/next-mdx-remote "next-mdx-remote"
