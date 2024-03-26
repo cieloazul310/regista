@@ -1,5 +1,11 @@
 # @repo/eslint-config
 
+## 0.0.3
+
+### Patch Changes
+
+- b9aa96c: add ci
+
 ## 0.0.2
 
 ### Patch Changes
