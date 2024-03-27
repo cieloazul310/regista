@@ -47,44 +47,47 @@ export const TreeView = forwardRef<HTMLDivElement, TreeViewProps>(
     const { data, className, ...rootProps } = localProps;
     const styles = treeView();
 
-    const renderChild = (child: Child) => (
-      <ArkTreeView.Branch
-        key={child.id}
-        id={child.id}
-        className={styles.branch}
-      >
-        <ArkTreeView.BranchControl className={styles.branchControl}>
-          <ArkTreeView.BranchIndicator className={styles.branchIndicator}>
-            <ChevronRightIcon />
-          </ArkTreeView.BranchIndicator>
-          <ArkTreeView.BranchText
-            className={cx(styles.branchText, css({ cursor: "pointer" }))}
+    const renderChild = (child: Child) => {
+      if (!child.children) {
+        return (
+          <ArkTreeView.Item
+            key={child.id}
+            id={child.id}
+            className={cx(styles.item, css({ display: "block" }))}
+            asChild
           >
-            {child.name}
-          </ArkTreeView.BranchText>
-        </ArkTreeView.BranchControl>
-        <ArkTreeView.BranchContent className={styles.branchContent}>
-          {child.children?.map((nestedChild) =>
-            nestedChild.children ? (
-              renderChild(nestedChild)
-            ) : (
-              <ArkTreeView.Item
-                key={nestedChild.id}
-                id={nestedChild.id}
-                className={cx(styles.item, css({ display: "block" }))}
-                asChild
-              >
-                <NextLink href={nestedChild.id}>
-                  <ArkTreeView.ItemText className={styles.itemText}>
-                    {nestedChild.name}
-                  </ArkTreeView.ItemText>
-                </NextLink>
-              </ArkTreeView.Item>
-            ),
-          )}
-        </ArkTreeView.BranchContent>
-      </ArkTreeView.Branch>
-    );
+            <NextLink href={child.id}>
+              <ArkTreeView.ItemText className={styles.itemText}>
+                {child.name}
+              </ArkTreeView.ItemText>
+            </NextLink>
+          </ArkTreeView.Item>
+        );
+      }
+      return (
+        <ArkTreeView.Branch
+          key={child.id}
+          id={child.id}
+          className={styles.branch}
+        >
+          <ArkTreeView.BranchControl className={styles.branchControl}>
+            {child.children && (
+              <ArkTreeView.BranchIndicator className={styles.branchIndicator}>
+                <ChevronRightIcon />
+              </ArkTreeView.BranchIndicator>
+            )}
+            <ArkTreeView.BranchText
+              className={cx(styles.branchText, css({ cursor: "pointer" }))}
+            >
+              {child.name}
+            </ArkTreeView.BranchText>
+          </ArkTreeView.BranchControl>
+          <ArkTreeView.BranchContent className={styles.branchContent}>
+            {child.children?.map((nestedChild) => renderChild(nestedChild))}
+          </ArkTreeView.BranchContent>
+        </ArkTreeView.Branch>
+      );
+    };
 
     return (
       <ArkTreeView.Root

@@ -14,6 +14,10 @@ async function Menu(props: Omit<TreeViewProps, "data">) {
         name: "Top",
       },
       {
+        id: "/post",
+        name: "Post",
+      },
+      {
         id: "/categories",
         name: "Categories",
         children: allCategories.map(({ id, name }) => ({
