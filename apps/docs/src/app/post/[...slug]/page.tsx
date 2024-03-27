@@ -1,5 +1,7 @@
 import NextLink from "next/link";
 import type { Metadata } from "next";
+import rehypeShiki, { type RehypeShikiOptions } from "@shikijs/rehype";
+import remarkGfm from "remark-gfm";
 import { Author, Post, PageHeader, CategoryBadge } from "@/components";
 import { author, post, categories } from "@/content";
 import { useMDXComponents } from "@/mdx-components";
@@ -35,6 +37,21 @@ async function Page({ params }: { params: { slug: string[] } }) {
   const components = useMDXComponents();
   const item = await post.useMdx(slug, {
     components,
+    options: {
+      mdxOptions: {
+        rehypePlugins: [
+          [
+            // @ts-expect-error
+            rehypeShiki,
+            {
+              themes: {
+                light: "slack-dark",
+              },
+            } satisfies RehypeShikiOptions,
+          ],
+        ],
+      },
+    },
   });
   if (!item) return null;
   const { content, frontmatter, context } = item;

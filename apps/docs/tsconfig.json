@@ -6,17 +6,23 @@
         "name": "next"
       }
     ],
+    "baseUrl": ".",
+    "rootDir": "../../",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "styled-system/*": ["./styled-system/*"]
     }
   },
   "include": [
     ".eslintrc.cjs",
     "next-env.d.ts",
     "next.config.mjs",
+    "panda.config.ts",
+    "postcss.config.cjs",
     "**/*.ts",
     "**/*.tsx",
-    ".next/types/**/*.ts"
+    ".next/types/**/*.ts",
+    "styled-system"
   ],
   "exclude": ["node_modules"]
 }

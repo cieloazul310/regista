@@ -1,12 +1,21 @@
 import createMDX from "@next/mdx";
+import rehypeShiki from "@shikijs/rehype";
 
 const withMdx = createMDX({
   experimental: {
     mdxRs: true,
   },
   options: {
-    remarkPlugins: [],
-    rehypePlugins: [],
+    rehypePlugins: [
+      [
+        rehypeShiki,
+        {
+          themes: {
+            light: "slack-dark",
+          },
+        },
+      ],
+    ],
   },
 });
 
