@@ -1,0 +1,14 @@
+{
+  "$schema": "https://geojson.org/schema/FeatureCollection.json",
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [140.36, 37.4]
+      },
+      "properties": { "id": "mito" }
+    }
+  ]
+}

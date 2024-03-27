@@ -50,8 +50,7 @@ export function parseData(format: DataFormat) {
   return (raw: string) => JSON.parse(raw);
 }
 
-export function dataFormatter(format: DataFormat) {
-  const extensions = dataformatToExts(format);
+export function dataFormatter(format: DataFormat, extensions?: string[]) {
   const parser = parseData(format);
-  return { extensions, parser };
+  return { extensions: extensions ?? dataformatToExts(format), parser };
 }

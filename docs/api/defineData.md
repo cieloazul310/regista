@@ -54,6 +54,20 @@ default: `yaml`
 
 Specify the data format to read.
 
+#### `extensions` (*optional*)
+
+type: `string[]`
+default: `undefined`
+
+Specify the extensions of files to be detected as an array.
+
+Default:
+
+| format | extensions        |
+|--------|-------------------|
+| `yaml` | `["yml", "yaml"]` |
+| `json` | `["json"]`        |
+
 ### Properties
 
 #### schema
