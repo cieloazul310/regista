@@ -6,4 +6,12 @@ module.exports = {
   parserOptions: {
     project: true,
   },
+  overrides: [
+    {
+      files: "src/mdx-components.tsx",
+      rules: {
+        "import/prefer-default-export": "off",
+      },
+    },
+  ],
 };

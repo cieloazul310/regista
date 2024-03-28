@@ -1,5 +1,14 @@
 import type { MDXComponents } from "mdx/types";
-import { Image, Link } from "@/components";
+import {
+  Blockquote,
+  Code,
+  Hr,
+  Paragraph,
+  Pre,
+  createHeadings,
+  Image,
+  Link,
+} from "@/components";
 
 export function useMDXComponents(
   components: MDXComponents = {},
@@ -7,6 +16,12 @@ export function useMDXComponents(
   return {
     a: Link,
     img: Image,
+    blockquote: Blockquote,
+    code: Code,
+    hr: Hr,
+    p: Paragraph,
+    pre: Pre,
+    ...createHeadings(),
     ...components,
   };
 }

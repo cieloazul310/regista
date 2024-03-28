@@ -7,12 +7,14 @@ export default function defineData<T extends ZodRawShape>({
   contentPath,
   schema,
   format = "yaml",
+  extensions = undefined,
 }: {
   contentPath: string;
   schema: T;
   format?: DataFormat;
+  extensions?: string[];
 }) {
-  const { extensions, parser } = dataFormatter(format);
+  const formatter = dataFormatter(format, extensions);
   const dataSchema = z.object({ id: z.string() }).extend(schema).passthrough();
   const varidator = dataSchemaVaridator(dataSchema);
 
@@ -22,14 +24,14 @@ export default function defineData<T extends ZodRawShape>({
       recursive: true,
     });
     const files = filesInDir.filter((fileName) =>
-      extensions.some((ext) => new RegExp(`.${ext}$`).test(fileName)),
+      formatter.extensions.some((ext) => new RegExp(`.${ext}$`).test(fileName)),
     );
     const collection = (
       await Promise.all(
         files.map(async (filename) => {
           const absolutePath = path.join(contentPath, filename);
           const file = await readFile(absolutePath, "utf8");
-          const datum = parser(file);
+          const datum = formatter.parser(file);
           return {
             data: { id: filename.replace(/\.[^/.]+$/, ""), ...datum },
             filename,
