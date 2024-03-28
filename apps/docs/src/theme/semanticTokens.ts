@@ -12,5 +12,6 @@ export default defineSemanticTokens({
     lg: { value: "{spacing.8}" },
     xl: { value: "{spacing.16}" },
     "2xl": { value: "{spacing.32}" },
+    "main-px": { value: { base: "{spacing.md}", md: "{spacing.xl}" } },
   },
 });

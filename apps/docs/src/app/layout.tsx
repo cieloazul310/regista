@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { css } from "styled-system/css";
 import { vstack } from "styled-system/patterns";
 import { Flex } from "styled-system/jsx";
-import { Header, Menu } from "@/components";
+import { Header, Menu, Drawer, Footer } from "@/components";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -18,7 +18,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
     <html lang="ja" suppressHydrationWarning>
       <body>
         <Header />
-        <div>
+        <div className={css({ maxWidth: "full" })}>
           <Flex
             className={css({
               width: "full",
@@ -36,20 +36,29 @@ export default function RootLayout({ children }: PropsWithChildren) {
                 maxHeight: "calc(100vh - {sizes.header-height})",
                 overflowY: "auto",
                 pt: "lg",
+                px: "sm",
+                hideBelow: "md",
               })}
             >
               <Menu />
             </nav>
             <main
-              className={css({ flexGrow: 1, maxWidth: "main-width", px: "xl" })}
+              className={vstack({
+                gap: "lg",
+                alignItems: "stretch",
+                flexGrow: 1,
+                width: "full",
+                maxWidth: "main-width",
+                px: "main-px",
+                py: "lg",
+              })}
             >
               {children}
             </main>
           </Flex>
         </div>
-        <footer>
-          <p>Next.js with MDX content</p>
-        </footer>
+        <Drawer />
+        <Footer />
       </body>
     </html>
   );

@@ -1,5 +1,6 @@
 import NextLink from "next/link";
 import type { Metadata } from "next";
+import { vstack } from "styled-system/patterns";
 import rehypeShiki, { type RehypeShikiOptions } from "@shikijs/rehype";
 import { Author, Post, PageHeader, CategoryBadge } from "@/components";
 import { author, post, categories } from "@/content";
@@ -61,7 +62,7 @@ async function Page({ params }: { params: { slug: string[] } }) {
 
   return (
     <>
-      <article>
+      <article className={vstack({ gap: "lg", alignItems: "stretch" })}>
         <PageHeader
           title={title}
           headerText={category && <CategoryBadge {...category} />}

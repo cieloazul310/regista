@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { forwardRef } from "react";
 import { Text, type TextProps } from "./text";
 

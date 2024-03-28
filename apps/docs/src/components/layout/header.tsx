@@ -1,7 +1,7 @@
 import NextLink from "next/link";
 import { flex } from "styled-system/patterns";
-import { FaGithub } from "react-icons/fa6";
-import { IconButton, Heading } from "../ui";
+import { Heading } from "../ui";
+import Address from "./address";
 
 function Header() {
   return (
@@ -16,24 +16,15 @@ function Header() {
         height: "header-height",
         alignItems: "center",
         justifyContent: "space-between",
-        boxShadow: "md",
-        px: "md",
+        shadow: "md",
+        px: "main-px",
         zIndex: "sticky",
       })}
     >
       <Heading as="h1">
         <NextLink href="/">Regista</NextLink>
       </Heading>
-      <IconButton variant="ghost" asChild>
-        <a
-          href="https://github.com/cieloazul310/regista"
-          target="_blank"
-          rel="noreferrer noopener"
-          aria-label="GitHub"
-        >
-          <FaGithub />
-        </a>
-      </IconButton>
+      <Address />
     </header>
   );
 }

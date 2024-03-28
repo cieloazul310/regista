@@ -1,6 +1,6 @@
 import { defineConfig } from "@pandacss/dev";
 import { createPreset } from "@park-ui/panda-preset";
-import { semanticTokens, tokens } from "@/theme";
+import { globalCss, patterns, semanticTokens, tokens } from "@/theme";
 
 export default defineConfig({
   // Whether to use css reset
@@ -27,6 +27,10 @@ export default defineConfig({
       tokens,
     },
   },
+
+  globalCss,
+
+  patterns,
 
   jsxFramework: "react",
 
