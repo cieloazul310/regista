@@ -7,7 +7,7 @@ import { Text } from "@/components/ui";
 import { useMDXComponents } from "@/mdx-components";
 import { post } from "@/content";
 
-export async function getStaticParams() {
+export async function generateStaticParams() {
   const allPost = await post.getAll();
   return allPost;
 }
