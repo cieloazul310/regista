@@ -1,5 +1,13 @@
 # docs
 
+## 0.0.4
+
+### Patch Changes
+
+- 8f8dd74: feat(defineData): add support for custom extensions
+- Updated dependencies [8f8dd74]
+  - @cieloazul310/regista@0.0.4
+
 ## 0.0.3
 
 ### Patch Changes
