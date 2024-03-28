@@ -51,6 +51,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
                 maxWidth: "main-width",
                 px: "main-px",
                 py: "lg",
+                minHeight: "calc(100vh - {sizes.header-height})",
               })}
             >
               {children}

@@ -2,7 +2,7 @@ import { defineGlobalStyles } from "@pandacss/dev";
 
 export default defineGlobalStyles({
   pre: {
-    p: "lg",
+    p: "md",
     borderRadius: "l2",
     overflowX: "auto",
   },

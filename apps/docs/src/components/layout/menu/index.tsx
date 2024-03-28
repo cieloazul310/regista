@@ -1,10 +1,9 @@
-import { categories, author } from "@/content";
+import { post } from "@/content";
 import MenuClient from "./menu-client";
 import type { TreeViewProps, TreeViewData } from "./tree-view";
 
 async function Menu(props: Omit<TreeViewProps, "data">) {
-  const allCategories = await categories.getAll();
-  const allAuthor = await author.getAll();
+  const allPost = await post.getAll();
 
   const data: TreeViewData = {
     label: "Menu",
@@ -14,24 +13,24 @@ async function Menu(props: Omit<TreeViewProps, "data">) {
         name: "Top",
       },
       {
-        id: "/post",
-        name: "Post",
+        id: "/guide",
+        name: "Guide",
+        children: allPost
+          .filter(({ frontmatter }) => frontmatter.category === "guide")
+          .map(({ href, frontmatter }) => ({
+            id: href,
+            name: frontmatter.title,
+          })),
       },
       {
-        id: "/categories",
-        name: "Categories",
-        children: allCategories.map(({ id, name }) => ({
-          id: `/categories/${id}`,
-          name,
-        })),
-      },
-      {
-        id: "/author",
-        name: "Author",
-        children: allAuthor.map(({ id, name }) => ({
-          id: `/author/${id}`,
-          name,
-        })),
+        id: "/api",
+        name: "API",
+        children: allPost
+          .filter(({ frontmatter }) => frontmatter.category === "api")
+          .map(({ href, frontmatter }) => ({
+            id: href,
+            name: frontmatter.title,
+          })),
       },
     ],
   };

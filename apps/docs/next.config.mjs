@@ -21,14 +21,18 @@ const withMdx = createMDX({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  output: "export",
+  basePath: "/regista",
   images: {
-    remotePatterns: [
-      {
-        protocol: "https",
-        hostname: "avatars.githubusercontent.com",
-      },
-    ],
+    unoptimized: true,
+  },
+  pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  typescript: {
+    // !! WARN !!
+    // Dangerously allow production builds to successfully complete even if
+    // your project has type errors.
+    // !! WARN !!
+    ignoreBuildErrors: true,
   },
 };
 

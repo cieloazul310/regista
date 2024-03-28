@@ -4,7 +4,7 @@ import { PageHeader } from "@/components";
 export default function MDXPageLayout({ children }: PropsWithChildren) {
   return (
     <>
-      <PageHeader title="Next.js with MDX content" />
+      <PageHeader title="Regista" />
       <article>{children}</article>
     </>
   );
