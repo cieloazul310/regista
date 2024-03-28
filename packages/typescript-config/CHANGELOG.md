@@ -1,5 +1,11 @@
 # @repo/typescript-config
 
+## 0.0.4
+
+### Patch Changes
+
+- 8f8dd74: feat(defineData): add support for custom extensions
+
 ## 0.0.3
 
 ### Patch Changes
