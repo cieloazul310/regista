@@ -13,5 +13,11 @@ module.exports = {
         "import/prefer-default-export": "off",
       },
     },
+    {
+      files: ["src/theme/*", "panda.config.ts"],
+      rules: {
+        "import/no-extraneous-dependencies": "off",
+      },
+    },
   ],
 };

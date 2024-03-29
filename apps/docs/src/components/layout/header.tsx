@@ -1,6 +1,7 @@
 import NextLink from "next/link";
 import { flex } from "styled-system/patterns";
 import { Heading } from "../ui";
+import { ColorModeHandler } from "../client";
 import Address from "./address";
 
 function Header() {
@@ -15,16 +16,16 @@ function Header() {
         bg: "bg.canvas",
         height: "header-height",
         alignItems: "center",
-        justifyContent: "space-between",
         shadow: "md",
         px: "main-px",
         zIndex: "sticky",
       })}
     >
-      <Heading as="h1">
+      <Heading as="h1" flexGrow={1}>
         <NextLink href="/">Regista</NextLink>
       </Heading>
       <Address />
+      <ColorModeHandler />
     </header>
   );
 }

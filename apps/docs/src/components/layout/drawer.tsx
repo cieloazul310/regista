@@ -1,5 +1,6 @@
 import { LuX, LuMenu } from "react-icons/lu";
 import { css } from "styled-system/css";
+import { ColorModeHandler } from "../client";
 import { Button, IconButton, Drawer as ParkDrawer } from "../ui";
 import Menu from "./menu";
 
@@ -44,6 +45,7 @@ function DrawerServer(props: ParkDrawer.RootProps) {
             <Menu />
           </ParkDrawer.Body>
           <ParkDrawer.Footer gap="3">
+            <ColorModeHandler />
             <ParkDrawer.CloseTrigger asChild>
               <Button variant="outline">Close</Button>
             </ParkDrawer.CloseTrigger>

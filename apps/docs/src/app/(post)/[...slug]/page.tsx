@@ -55,6 +55,7 @@ async function Page({ params }: { params: { slug: string[] } }) {
       <nav
         className={flex({
           direction: { base: "column", md: "row" },
+          gap: "md",
           width: "full",
           justifyContent: "space-between",
         })}
