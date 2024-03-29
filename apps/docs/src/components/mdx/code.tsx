@@ -6,7 +6,7 @@ export default function Code(props: React.ComponentProps<"code">) {
       className={css({
         ":not(pre) > &": {
           color: "accent.12",
-          bg: "accent.6/18",
+          bg: "accent.a4",
           px: "xs",
           rounded: "md",
         },

@@ -15,6 +15,13 @@ export default defineConfig({
     }),
   ],
 
+  conditions: {
+    extend: {
+      light: "[data-theme=light] &",
+      dark: "[data-theme=dark] &",
+    },
+  },
+
   // Where to look for your css declarations
   include: ["./src/**/*.{js,jsx,ts,tsx}"],
 

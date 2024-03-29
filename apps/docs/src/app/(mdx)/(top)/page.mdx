@@ -2,26 +2,52 @@
 
 Simple and type-safe Markdown/MDX content management tool for Next.js App Router.
 
-## Project structure
+```tsx
+// src/content.index.ts
+import * as path from "path";
+import { z, defineMdx } from "@cieloazul310/regista";
 
-```txt
-.
-├── content
-│   ├── author
-│   ├── post
-│   └── categories.yml
-├── public
-│   ├── assets
-│   ├── next.svg
-│   └── vercel.svg
-├── src
-│   ├── app
-│   ├── components
-│   ├── content
-│   └── mdx-components.tsx
-├── next.config.mjs
-├── package.json
-└── tsconfig.json
+export const post = defineMdx({
+  contentPath: path.resolve(process.cwd(), "content/post"),
+  basePath: "/post",
+  schema: {
+    author: z.string().optional(),
+  },
+});
+export type PostFrontmatter = z.infer<typeof post.schema>;
+export type PostMetadata = z.infer<typeof post.metadataSchema>;
+```
+
+```tsx
+// src/app/post/[...slug].tsx
+import NextLink from "next/link";
+import type { Metadata } from "next";
+import { post } from "@/content";
+
+export async function generateStaticParams() {
+  const allPosts = await post.getAll(); // => PostMetadata[]
+  return allPosts;
+}
+export default async function Page({ params }: { params: { slug: string[] } }) {
+  const { slug } = params;
+  const item = await post.useMdx(slug);
+  if (!item) return null;
+
+  const { content, frontmatter } = item;
+  
+  return (
+    <article>
+      <header>
+        <h1>{frontmatter.title}</h1>
+        <small>
+          <time>{frontmatter.date.toDateString()}</time>
+          <span>post by {frontmatter.author}</span>
+        </small>
+      </header>
+      <section>{content}</section>
+    </article>
+  );
+}
 ```
 
 GitHub Repo  

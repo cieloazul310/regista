@@ -7,6 +7,6 @@ export default defineGlobalStyles({
     overflowX: "auto",
   },
   "article pre": {
-    my: "lg",
+    my: "md",
   },
 });
