@@ -47,8 +47,8 @@ Zod Objects
 
 #### `format` (*optional*)
 
-type: `yaml | json`
-default: `yaml`
+type: `"yaml" | "json"`
+default: `"yaml"`
 
 Specify the data format to read.
 

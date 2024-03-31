@@ -48,8 +48,8 @@ https://zod.dev/?id=objects
 
 #### `format` (*optional*)
 
-type: `yaml | json`
-default: `yaml`
+type: `"yaml" | "json"`
+default: `"yaml"`
 
 Specify the data format to read.
 
@@ -62,10 +62,10 @@ Specify the extensions of files to be detected as an array.
 
 Default:
 
-| format | extensions        |
-|--------|-------------------|
-| `yaml` | `["yml", "yaml"]` |
-| `json` | `["json"]`        |
+| format   | extensions        |
+|----------|-------------------|
+| `"yaml"` | `["yml", "yaml"]` |
+| `"json"` | `["json"]`        |
 
 ### Properties
 

@@ -18,6 +18,8 @@ export type PostFrontmatter = z.infer<typeof post.schema>;
 export type PostMetadata = z.infer<typeof post.metadataSchema>;
 ```
 
+In a server component:
+
 ```tsx
 // src/app/post/[...slug].tsx
 import NextLink from "next/link";

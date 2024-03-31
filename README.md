@@ -41,7 +41,7 @@ You can change the location of stored content and data definitions as you like.
 npm install @cieloazul310/regista
 ```
 
-### 2. Set up
+### 2. Configure your content
 
 ```tsx
 // src/content.index.ts
