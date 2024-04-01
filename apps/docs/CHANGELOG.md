@@ -1,5 +1,13 @@
 # docs
 
+## 0.0.5
+
+### Patch Changes
+
+- b42cee7: add sorfFunction option to defineMdx
+- Updated dependencies [b42cee7]
+  - @cieloazul310/regista@0.0.5
+
 ## 0.0.4
 
 ### Patch Changes
