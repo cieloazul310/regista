@@ -1,7 +1,7 @@
 import * as path from "path";
 import { readdir, readFile } from "fs/promises";
 import { compileMDX, type MDXRemoteProps } from "next-mdx-remote/rsc";
-import { z, type ZodRawShape } from "zod";
+import { z, type ZodRawShape, type ZodObject } from "zod";
 import { fileNameToSlug, dataSchemaVaridator } from "./utils";
 
 const defaultFrontmatterSchema = z.object({
@@ -10,6 +10,7 @@ const defaultFrontmatterSchema = z.object({
   lastmod: z.coerce.date(),
   draft: z.boolean(),
 });
+
 const defaultFrontmatterSchemaInput = defaultFrontmatterSchema.partial({
   lastmod: true,
   draft: true,
@@ -23,7 +24,7 @@ export type FrontmatterInput<
   T extends Record<string, any> = Record<string, unknown>,
 > = T & z.infer<typeof defaultFrontmatterSchemaInput>;
 
-export type Metadata<
+export type MdxMetadata<
   TFrontmatter extends Record<string, any> = Record<string, unknown>,
 > = {
   frontmatter: TFrontmatter;
@@ -53,16 +54,20 @@ export default function defineMdx<Z extends ZodRawShape>({
   basePath,
   schema,
   extensions = ["md", "mdx"],
+  sortFunction,
 }: {
   contentPath: string;
   basePath: string;
   schema: Z;
   extensions?: string[];
+  sortFunction?: (
+    a: MdxMetadata<Frontmatter<z.infer<ZodObject<Z>>>>,
+    b: MdxMetadata<Frontmatter<z.infer<ZodObject<Z>>>>,
+  ) => number;
 }) {
-  const restFrontmatter = z.object(schema);
-  type RestFrontmatter = z.infer<typeof restFrontmatter>;
+  type RestFrontmatter = z.infer<ZodObject<Z>>;
   const frontmatterSchema = defaultFrontmatterSchema
-    .merge(restFrontmatter)
+    .extend(schema)
     .passthrough();
   const metadataSchema = z.object({
     frontmatter: frontmatterSchema,
@@ -73,10 +78,10 @@ export default function defineMdx<Z extends ZodRawShape>({
   const varidator = dataSchemaVaridator(frontmatterSchema);
 
   async function getAll(): Promise<
-    (Metadata<Frontmatter<RestFrontmatter>> & {
+    (MdxMetadata<Frontmatter<RestFrontmatter>> & {
       context: {
-        older: Metadata<Frontmatter<RestFrontmatter>> | null;
-        newer: Metadata<Frontmatter<RestFrontmatter>> | null;
+        older: MdxMetadata<Frontmatter<RestFrontmatter>> | null;
+        newer: MdxMetadata<Frontmatter<RestFrontmatter>> | null;
       };
     })[]
   > {
@@ -88,7 +93,7 @@ export default function defineMdx<Z extends ZodRawShape>({
       extensions.some((ext) => new RegExp(`.${ext}$`).test(fileName)),
     );
 
-    const allPosts: Metadata<Frontmatter<RestFrontmatter>>[] = (
+    const allPosts: MdxMetadata<Frontmatter<RestFrontmatter>>[] = (
       await Promise.all(
         files.map(async (filename) => {
           const absolutePath = path.join(contentPath, filename);
@@ -127,8 +132,9 @@ export default function defineMdx<Z extends ZodRawShape>({
       )
       .sort(
         (a, b) =>
-          a.frontmatter.date.getTime() - b.frontmatter.date.getTime() ||
-          a.frontmatter.lastmod.getTime() - b.frontmatter.lastmod.getTime(),
+          sortFunction?.(a, b) ??
+          (a.frontmatter.date.getTime() - b.frontmatter.date.getTime() ||
+            a.frontmatter.lastmod.getTime() - b.frontmatter.lastmod.getTime()),
       )
       .map((post, index, arr) => ({
         ...post,

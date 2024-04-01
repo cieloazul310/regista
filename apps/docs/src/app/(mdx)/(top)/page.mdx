@@ -1,4 +1,3 @@
-<a href="https://badge.fury.io/js/@cieloazul310%2Fregista" target="_blank" rel="noopener noreferrer"><img src="https://badge.fury.io/js/@cieloazul310%2Fregista.svg" alt="npm version" /></a>
 
 Simple and type-safe Markdown/MDX content management tool for Next.js App Router.
 
@@ -17,6 +16,8 @@ export const post = defineMdx({
 export type PostFrontmatter = z.infer<typeof post.schema>;
 export type PostMetadata = z.infer<typeof post.metadataSchema>;
 ```
+
+In a server component:
 
 ```tsx
 // src/app/post/[...slug].tsx
