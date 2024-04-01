@@ -1,5 +1,11 @@
 # @repo/typescript-config
 
+## 0.0.5
+
+### Patch Changes
+
+- b42cee7: add sorfFunction option to defineMdx
+
 ## 0.0.4
 
 ### Patch Changes
