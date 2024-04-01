@@ -101,6 +101,24 @@ default: `["md", "mdx"]`
 
 Specify the extensions of Markdown/MDX files to be detected as an array.
 
+#### `sortFunction` (*optional*)
+
+type: `(a: Metadata<Frontmatter>, b: Metadata<Frontmatter>) => number`  
+default: `undefined`
+
+```tsx
+export const docs = defineMdx({
+  contentPath: path.resolve(process.cwd(), "content/docs"),
+  basePath: "/docs",
+  schema: {
+    index: z.number(),
+  },
+  sortFunction: (a, b) => a.frontmatter.index - b.frontmatter.index,
+});
+```
+
+Specify the sort function for context which detect the older/newer posts. If no sort function is set, the items will be sorted by `date`, then by `lastmod`.
+
 ### Properties
 
 #### schema

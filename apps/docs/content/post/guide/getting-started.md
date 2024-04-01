@@ -1,7 +1,8 @@
 ---
 title: Getting Started
-date: 2024-03-24
+date: 2024-04-01
 category: guide
+index: 1
 ---
 
 ## Getting started
