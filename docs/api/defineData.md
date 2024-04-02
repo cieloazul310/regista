@@ -1,6 +1,7 @@
 ---
 title: defineData API
 date: 2024-03-26
+lastmod: 2024-04-02
 ---
 
 # defineData
@@ -12,11 +13,11 @@ import { z, defineData } from "@cieloazul310/regista";
 export const author = defineData({
   contentPath: path.resolve(process.cwd(), "content/author"),
   format: "yaml",
-  schema: {
+  schema: z.object({
     name: z.string(),
     description: z.string(),
     age: z.number().optional(),
-  },
+  }),
 });
 ```
 
@@ -32,16 +33,18 @@ Specify the path where data are stored.
 
 #### `schema`
 
-type: `ZodRawShape`
+type: `ZodType`
 
 Specify the type definition of the data in the [Zod schema][Zod].
 
 ```ts
-const schema: ZodRawShape = {
+const schema = z.object({
   name: z.string(),
   description: z.string(),
   age: z.number().optional(),
-};
+}) satisfies ZodType;
+
+const anotherSchema = z.string() satisfies ZodType;
 ```
 
 Zod Objects
@@ -49,14 +52,14 @@ Zod Objects
 
 #### `format` (*optional*)
 
-type: `"yaml" | "json"`
+type: `"yaml" | "json" | "raw"`  
 default: `"yaml"`
 
 Specify the data format to read.
 
 #### `extensions` (*optional*)
 
-type: `string[]`
+type: `string[]`  
 default: `undefined`
 
 Specify the extensions of files to be detected as an array.
@@ -67,12 +70,13 @@ Default:
 |----------|-------------------|
 | `"yaml"` | `["yml", "yaml"]` |
 | `"json"` | `["json"]`        |
+| `"raw"`  | `["txt"]`         |
 
 ### Properties
 
 #### schema
 
-type: `ZodObject`
+type: `ZodType`
 
 ```ts
 export type Author = z.infer<typeof author.schema>;
@@ -90,7 +94,7 @@ export type Author = z.infer<typeof author.schema>;
 
 #### `getAll()`
 
-returns: `Promise<Data[]>`
+returns: `Promise<Metadata<Data>[]>`
 
 Returns all data.
 
@@ -101,11 +105,11 @@ async function Example() {
   return (
     <div>
       {allAuthor
-        .map(({ id, name, description, age }) => (
+        .map(({ id, data }) => (
           <article key={id}>
-            <h1>{name}</h1>
-            <p>{description}</p>
-            {age && <p>{age}</p>}
+            <h1>{data.name}</h1>
+            <p>{data.description}</p>
+            {data.age && <p>{data.age}</p>}
           </article>
         ))
       }
@@ -114,10 +118,10 @@ async function Example() {
 }
 ```
 
-#### `get(key: keyof Data, value: unknown)`
+#### `get(key: "id" | keyof Data, value: unknown)`
 
-arguments: `keyof Data` (`string`), `unknown`
-returns: `Promise<Data | undefiend>`
+arguments: `"id" | keyof Data` (`string`), `unknown`
+returns: `Promise<Metadata<Data> | undefiend>`
 
 Returns data matching the key and value.
 
@@ -125,7 +129,8 @@ Returns data matching the key and value.
 async function Example() {
   const item = await author.get("name", "Beethoven");
   if (!item) return null;
-  const { name, description, age } = item;
+  const { data } = item;
+  const { name, description, age } = data;
 
 }
 ```

@@ -1,6 +1,7 @@
 ---
 title: defineDataFromFile API
 date: 2024-03-26
+lastmod: 2024-04-02
 ---
 
 # defineDataFromFile
@@ -12,10 +13,10 @@ import { z, defineDataFromFile } from "@cieloazul310/regista";
 export const categories = defineDataFromFile({
   filePath: path.resolve(process.cwd(), "content/categories.yml"),
   format: "yaml",
-  schema: {
+  schema: z.object({
     title: z.string(),
     description: z.string(),
-  },
+  }),
 });
 ```
 
@@ -31,12 +32,12 @@ Specify the path of the file to read.
 
 #### `schema`
 
-type: `ZodRawShape`
+type: `ZodType`
 
 Specify the type definition of the data in the [Zod schema][Zod].
 
 ```ts
-const schema: ZodRawShape = {
+const schema: ZodType = {
   title: z.string(),
   description: z.string(),
 };
@@ -56,7 +57,7 @@ Specify the data format to read.
 
 #### schema
 
-type: `ZodObject`
+type: `ZodType`
 
 ```ts
 export type Categories = z.infer<typeof categories.schema>;
@@ -98,7 +99,7 @@ async function Example() {
 
 #### `get(key: keyof Data, value: unknown)`
 
-arguments: `keyof Data` (`string`), `unknown`
+arguments: `keyof Data` (`string`), `unknown`  
 returns: `Promise<Data | undefiend>`
 
 Returns data matching the key and value.
