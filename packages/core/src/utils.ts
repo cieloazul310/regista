@@ -7,10 +7,9 @@ import * as yaml from "yaml";
  * 2024/hoge.mdx => ["2024", "hoge"]
  * 2024/nested-post/index.md => ["2024", "nested-post"]
  */
-export function fileNameToSlug(filename: string) {
-  const indexPattern = /\/index.(md|mdx)$/;
-  const pattern = /.(md|mdx)$/;
-  return filename.replace(indexPattern, ".mdx").replace(pattern, "").split("/");
+export function fileNameToSlug(fileName: string) {
+  const pattern = /\/index.(md|mdx)$|.(md|mdx)$/;
+  return fileName.replace(pattern, "").split("/");
 }
 
 export function schemaVaridator<T extends ZodType>(schema: T) {
@@ -37,7 +36,7 @@ export function dataSchemaVaridator<T extends ZodType>(schema: T) {
   };
 }
 
-export const dataFormat = z.enum(["yaml", "json"]);
+export const dataFormat = z.enum(["yaml", "json", "buffer"]);
 export type DataFormat = z.infer<typeof dataFormat>;
 
 export function dataformatToExts(format: DataFormat) {

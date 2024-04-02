@@ -76,6 +76,7 @@ export default function defineMdx<Z extends ZodRawShape>({
     href: z.string(),
   });
   const varidator = dataSchemaVaridator(frontmatterSchema);
+  const re = new RegExp(`.(${extensions.join("|")})$`);
 
   async function getAll(): Promise<
     (MdxMetadata<Frontmatter<RestFrontmatter>> & {
@@ -89,9 +90,7 @@ export default function defineMdx<Z extends ZodRawShape>({
       encoding: "utf8",
       recursive: true,
     });
-    const files = filesInDir.filter((fileName) =>
-      extensions.some((ext) => new RegExp(`.${ext}$`).test(fileName)),
-    );
+    const files = filesInDir.filter((fileName) => re.test(fileName));
 
     const allPosts: MdxMetadata<Frontmatter<RestFrontmatter>>[] = (
       await Promise.all(

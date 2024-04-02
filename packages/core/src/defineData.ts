@@ -17,15 +17,14 @@ export default function defineData<T extends ZodRawShape>({
   const formatter = dataFormatter(format, extensions);
   const dataSchema = z.object({ id: z.string() }).extend(schema).passthrough();
   const varidator = dataSchemaVaridator(dataSchema);
+  const re = new RegExp(`.(${formatter.extensions.join("|")})$`);
 
   async function getAll(): Promise<z.infer<typeof dataSchema>[]> {
     const filesInDir = await readdir(contentPath, {
       encoding: "utf8",
       recursive: true,
     });
-    const files = filesInDir.filter((fileName) =>
-      formatter.extensions.some((ext) => new RegExp(`.${ext}$`).test(fileName)),
-    );
+    const files = filesInDir.filter((fileName) => re.test(fileName));
     const collection = (
       await Promise.all(
         files.map(async (filename) => {
