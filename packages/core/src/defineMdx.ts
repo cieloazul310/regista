@@ -61,11 +61,11 @@ export default function defineMdx<Z extends ZodRawShape>({
   schema: Z;
   extensions?: string[];
   sortFunction?: (
-    a: MdxMetadata<Frontmatter<z.infer<ZodObject<Z>>>>,
-    b: MdxMetadata<Frontmatter<z.infer<ZodObject<Z>>>>,
+    a: MdxMetadata<Frontmatter<z.TypeOf<ZodObject<Z>>>>,
+    b: MdxMetadata<Frontmatter<z.TypeOf<ZodObject<Z>>>>,
   ) => number;
 }) {
-  type RestFrontmatter = z.infer<ZodObject<Z>>;
+  type RestFrontmatter = z.TypeOf<ZodObject<Z>>;
   const frontmatterSchema = defaultFrontmatterSchema
     .extend(schema)
     .passthrough();

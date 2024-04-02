@@ -1,9 +1,14 @@
 import { readFile, readdir } from "fs/promises";
 import * as path from "path";
-import { z, type ZodRawShape } from "zod";
-import { dataSchemaVaridator, dataFormatter, type DataFormat } from "./utils";
+import { z, type ZodType } from "zod";
+import {
+  dataSchemaVaridator,
+  dataFormatter,
+  type DataFormat,
+  type DataMetadata,
+} from "./utils";
 
-export default function defineData<T extends ZodRawShape>({
+export default function defineData<T extends ZodType>({
   contentPath,
   schema,
   format = "yaml",
@@ -14,14 +19,13 @@ export default function defineData<T extends ZodRawShape>({
   format?: DataFormat;
   extensions?: string[];
 }) {
+  type DataSchema = z.TypeOf<T>;
   const formatter = dataFormatter(format, extensions);
-  const dataSchema = z.object({ id: z.string() }).extend(schema).passthrough();
-  const varidator = dataSchemaVaridator(dataSchema);
+  const varidator = dataSchemaVaridator(schema);
   const re = new RegExp(`.(${formatter.extensions.join("|")})$`);
 
-  async function getAll(): Promise<z.infer<typeof dataSchema>[]> {
+  async function getAll(): Promise<DataMetadata<DataSchema>[]> {
     const filesInDir = await readdir(contentPath, {
-      encoding: "utf8",
       recursive: true,
     });
     const files = filesInDir.filter((fileName) => re.test(fileName));
@@ -32,28 +36,30 @@ export default function defineData<T extends ZodRawShape>({
           const file = await readFile(absolutePath, "utf8");
           const datum = formatter.parser(file);
           return {
-            data: { id: filename.replace(/\.[^/.]+$/, ""), ...datum },
+            data: datum,
+            id: filename.replace(/\.[^/.]+$/, ""),
             filename,
+            absolutePath,
           };
         }),
       )
-    )
-      .filter(varidator)
-      .map(({ data }) => data);
+    ).filter(varidator);
 
     return collection;
   }
 
   async function get(
-    key: keyof z.infer<typeof dataSchema>,
+    key: "id" | keyof DataSchema,
     value: unknown,
-  ): Promise<z.infer<typeof dataSchema> | undefined> {
+  ): Promise<DataMetadata<DataSchema> | undefined> {
     const data = await getAll();
-    return data.find((datum) => datum?.[key] === value);
+    if (key === "id") return data.find((datum) => datum.id === value);
+
+    return data.find((datum) => datum?.data[key] === value);
   }
 
   return {
-    schema: dataSchema,
+    schema,
     get,
     getAll,
   };
