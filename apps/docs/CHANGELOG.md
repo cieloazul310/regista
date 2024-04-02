@@ -1,5 +1,13 @@
 # docs
 
+## 0.0.6
+
+### Patch Changes
+
+- bf40353: refactor
+- Updated dependencies [bf40353]
+  - @cieloazul310/regista@0.0.6
+
 ## 0.0.5
 
 ### Patch Changes

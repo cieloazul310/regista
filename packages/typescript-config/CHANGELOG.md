@@ -1,5 +1,11 @@
 # @repo/typescript-config
 
+## 0.0.6
+
+### Patch Changes
+
+- bf40353: refactor
+
 ## 0.0.5
 
 ### Patch Changes
