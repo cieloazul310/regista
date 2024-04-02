@@ -1,8 +1,8 @@
 import { readFile } from "fs/promises";
-import { z, type ZodRawShape } from "zod";
+import { z, type ZodType } from "zod";
 import { schemaVaridator, dataFormatter, type DataFormat } from "./utils";
 
-export default function defineDataFromFile<T extends ZodRawShape>({
+export default function defineDataFromFile<T extends ZodType>({
   filePath,
   schema,
   format = "yaml",
@@ -12,10 +12,9 @@ export default function defineDataFromFile<T extends ZodRawShape>({
   format?: DataFormat;
 }) {
   const { parser } = dataFormatter(format);
-  const dataSchema = z.object({ id: z.string() }).extend(schema).passthrough();
-  const varidator = schemaVaridator(dataSchema);
+  const varidator = schemaVaridator(schema);
 
-  async function getAll() {
+  async function getAll(): Promise<z.TypeOf<T>[]> {
     const file = await readFile(filePath, "utf8");
     const raw = parser(file);
     if (!Array.isArray(raw)) throw new Error("Data must be array");
@@ -23,13 +22,17 @@ export default function defineDataFromFile<T extends ZodRawShape>({
     return data;
   }
 
-  async function get(key: keyof z.infer<typeof dataSchema>, value: unknown) {
+  /** @todo should be adapted to any data */
+  async function get(
+    key: keyof z.TypeOf<T>,
+    value: unknown,
+  ): Promise<z.TypeOf<T> | undefined> {
     const data = await getAll();
     return data.find((datum) => datum?.[key] === value);
   }
 
   return {
-    schema: dataSchema,
+    schema,
     get,
     getAll,
   };

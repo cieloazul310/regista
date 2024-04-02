@@ -7,9 +7,9 @@ const testDir = "packages/core/__tests__";
 describe("author", () => {
   const author = defineData({
     contentPath: path.resolve(process.cwd(), testDir, "content/author"),
-    schema: {
+    schema: z.object({
       name: z.string(),
-    },
+    }),
   });
 
   it("length", async () => {
@@ -18,7 +18,7 @@ describe("author", () => {
   });
   it("get", async () => {
     const itemOne = await author.get("id", "roppa");
-    expect(itemOne?.name).toBe("那珂川緑波");
+    expect(itemOne?.data.name).toBe("那珂川緑波");
 
     const itemTwo = await author.get("id", "enoken");
     expect(itemTwo).toBeUndefined();
@@ -28,11 +28,11 @@ describe("author", () => {
 describe("safeParse filtering", () => {
   const author = defineData({
     contentPath: path.resolve(process.cwd(), testDir, "content/author"),
-    schema: {
+    schema: z.object({
       name: z.string(),
       description: z.string(),
       image: z.string(),
-    },
+    }),
   });
 
   it("length", async () => {
@@ -45,10 +45,10 @@ describe("json file", () => {
   const jsonData = defineData({
     contentPath: path.resolve(process.cwd(), testDir, "content/json"),
     format: "json",
-    schema: {
+    schema: z.object({
       name: z.string(),
       values: z.array(z.number().int().nonnegative().lte(10)),
-    },
+    }),
   });
 
   it("length", async () => {
@@ -61,7 +61,7 @@ describe("custom extension", () => {
   const geojson = defineData({
     contentPath: path.resolve(process.cwd(), testDir, "content/geojson"),
     format: "json",
-    schema: {
+    schema: z.object({
       type: z.enum(["FeatureCollection"]),
       features: z.array(
         z.object({
@@ -80,7 +80,7 @@ describe("custom extension", () => {
           properties: z.any(),
         }),
       ),
-    },
+    }),
     extensions: ["geojson"],
   });
   it("length", async () => {
@@ -88,7 +88,24 @@ describe("custom extension", () => {
     expect(allData.length).toBe(3);
   });
   it("get", async () => {
-    const data = await geojson.get("id", "datum1");
-    expect(data?.type).toBe("FeatureCollection");
+    const item = await geojson.get("id", "datum1");
+    expect(item?.data.type).toBe("FeatureCollection");
+  });
+});
+
+describe("text", () => {
+  const text = defineData({
+    contentPath: path.resolve(process.cwd(), testDir, "content/text"),
+    format: "raw",
+    schema: z.string(),
+  });
+
+  it("length", async () => {
+    const allData = await text.getAll();
+    expect(allData.length).toBe(3);
+  });
+  it("get", async () => {
+    const item = await text.get("id", "hoge_one");
+    expect(item?.data.slice(0, 9)).toBe("今年の正月のある晩");
   });
 });
