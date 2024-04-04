@@ -43,4 +43,4 @@ styled-system
 styled-system-studio
 
 # Park UI
-!apps/docs/src/lib
+!apps/**/lib
