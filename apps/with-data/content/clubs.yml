@@ -1,0 +1,45 @@
+- id: "6"
+  slug: reysol
+  name: 柏レイソル
+  fullname: 柏レイソル
+  short_name: 柏
+  company: 株式会社日立柏レイソル
+  category: J1
+  hometown: 柏市
+  area: 千葉県
+  website: https://www.reysol.co.jp
+
+- id: "23"
+  slug: verdy
+  name: 東京ヴェルディ
+  fullname: 東京ヴェルディ1969
+  short_name: 東京V
+  company: 東京ヴェルディ株式会社
+  category: J1
+  hometown: 東京都
+  area: 東京都
+  website: https://www.verdy.co.jp
+  relatedCompanies:
+    - 一般社団法人ヴェルディクラブ
+
+- id: "17"
+  slug: sanfrecce
+  name: サンフレッチェ広島
+  fullname: サンフレッチェ広島F.C
+  short_name: 広島
+  company: 株式会社サンフレッチェ広島
+  category: J1
+  hometown: 広島市
+  area: 広島県
+  website: https://www.sanfrecce.co.jp
+
+- id: "22"
+  slug: jefunited
+  name: ジェフユナイテッド千葉
+  fullname: ジェフユナイテッド市原・千葉
+  short_name: 千葉
+  company: ジェフユナイテッド株式会社
+  category: J2
+  hometown: 市原市、千葉市
+  area: 千葉県
+  website: https://jefunited.co.jp

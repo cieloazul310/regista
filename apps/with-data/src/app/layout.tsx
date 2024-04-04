@@ -7,8 +7,7 @@ import { Header, Menu, Drawer, Footer, Provider } from "@/components";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title:
-    "Regista - Simple and type-safe Markdown/MDX content management tool for Next.js App Router",
+  title: "Regista Using data example",
   description:
     "Simple and type-safe Markdown/MDX content management tool for Next.js App Router",
 };
@@ -61,12 +60,9 @@ export default function RootLayout({ children }: PropsWithChildren) {
                   gap: "lg",
                   alignItems: "stretch",
                   flexGrow: 1,
-                  bg: "bg.default",
                   rounded: "l2",
                   width: "full",
                   maxWidth: "main-width",
-                  px: "main-px",
-                  py: "lg",
                 })}
               >
                 {children}

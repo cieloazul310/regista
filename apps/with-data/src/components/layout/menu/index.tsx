@@ -1,9 +1,10 @@
-import { post } from "@/content";
+import { clubCollection, yearCollection } from "@/content";
 import MenuClient from "./menu-client";
 import type { TreeViewProps, TreeViewData } from "./tree-view";
 
 async function Menu(props: Omit<TreeViewProps, "data">) {
-  const allPost = await post.getAll();
+  const allClub = await clubCollection.getAll();
+  const allYear = await yearCollection.getAll();
 
   const data: TreeViewData = {
     label: "Menu",
@@ -13,23 +14,21 @@ async function Menu(props: Omit<TreeViewProps, "data">) {
         name: "Top",
       },
       {
-        id: "/guide",
-        name: "Guide",
-        children: allPost
-          .filter(({ frontmatter }) => frontmatter.category === "guide")
-          .map(({ href, frontmatter }) => ({
-            id: href,
-            name: frontmatter.title,
-          })),
+        id: "/club",
+        name: "Club",
+        children: allClub.map(({ slug, name }) => ({
+          id: `/club/${slug}`,
+          name,
+        })),
       },
       {
-        id: "/api",
-        name: "API",
-        children: allPost
-          .filter(({ frontmatter }) => frontmatter.category === "api")
-          .map(({ href, frontmatter }) => ({
-            id: href,
-            name: frontmatter.title,
+        id: "/year",
+        name: "Year",
+        children: allYear
+          .sort((a, b) => a.year - b.year)
+          .map(({ year }) => ({
+            id: `/year/${year}`,
+            name: `${year}年`,
           })),
       },
     ],

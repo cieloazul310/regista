@@ -21,19 +21,7 @@ const withMdx = createMDX({
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  output: "export",
-  basePath: "/regista",
-  images: {
-    unoptimized: true,
-  },
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
-  typescript: {
-    // !! WARN !!
-    // Dangerously allow production builds to successfully complete even if
-    // your project has type errors.
-    // !! WARN !!
-    ignoreBuildErrors: true,
-  },
 };
 
 export default withMdx(nextConfig);
