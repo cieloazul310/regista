@@ -4,7 +4,11 @@ import { Heading } from "../ui";
 import { ColorModeHandler } from "../client";
 import Address from "./address";
 
-function Header() {
+type HeaderProps = {
+  title: string;
+};
+
+function Header({ title }: HeaderProps) {
   return (
     <header
       className={flex({
@@ -22,7 +26,7 @@ function Header() {
       })}
     >
       <Heading as="h1" flexGrow={1}>
-        <NextLink href="/">Regista</NextLink>
+        <NextLink href="/">{title}</NextLink>
       </Heading>
       <Address />
       <ColorModeHandler />

@@ -1,5 +1,5 @@
 import * as path from "path";
-import { z, defineData, defineDataFromFile } from "@cieloazul310/regista";
+import { z, defineData, defineDataFromFile } from "@cieloazul310/regista-data";
 
 export const categories = z.enum(["J1", "J2", "J3"]);
 

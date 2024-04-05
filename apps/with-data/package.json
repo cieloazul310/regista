@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@ark-ui/react": "^2.2.3",
-    "@cieloazul310/regista": "*",
+    "@cieloazul310/regista-data": "*",
     "@shikijs/rehype": "^1.2.1",
     "next": "^14.1.1",
     "next-themes": "^0.3.0",

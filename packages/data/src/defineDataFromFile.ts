@@ -1,6 +1,10 @@
 import { readFile } from "fs/promises";
 import { z, type ZodType } from "zod";
-import { schemaVaridator, dataFormatter, type DataFormat } from "./utils";
+import {
+  schemaVaridator,
+  dataFormatter,
+  type DataFormat,
+} from "@cieloazul310/regista-utils";
 
 export default function defineDataFromFile<T extends ZodType>({
   filePath,

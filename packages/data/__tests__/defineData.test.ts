@@ -2,7 +2,7 @@ import * as path from "path";
 import { z } from "zod";
 import defineData from "../src/defineData";
 
-const testDir = "packages/core/__tests__";
+const testDir = "packages/data/__tests__";
 
 describe("author", () => {
   const author = defineData({

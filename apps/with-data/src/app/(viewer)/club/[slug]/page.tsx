@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
-import { PageHeader, createPLTable } from "@/components";
+import { css } from "styled-system/css";
+import { VStack } from "styled-system/jsx";
+import { Header, createPLTable } from "@/components";
 import { financial, clubCollection } from "@/content";
 
 export async function generateStaticParams() {
@@ -31,16 +33,26 @@ async function Page({ params }: PageProps) {
   const clubData = allData
     .filter(({ data }) => data.slug === slug)
     .sort((a, b) => a.data.year - b.data.year);
+
   const { head, renderRow } = createPLTable();
 
   return (
-    <div>
-      <PageHeader title={item.name} />
-      <table>
-        <thead>{head}</thead>
-        <tbody>{clubData.map(({ data }) => renderRow(data, "club"))}</tbody>
-      </table>
-    </div>
+    <>
+      <Header title={item.name} />
+      <VStack
+        gap="md"
+        alignItems="stretch"
+        maxWidth="content-width"
+        margin="auto"
+      >
+        <section className={css({ bg: "bg.default" })}>
+          <table>
+            <thead>{head("club")}</thead>
+            <tbody>{clubData.map(({ data }) => renderRow(data, "club"))}</tbody>
+          </table>
+        </section>
+      </VStack>
+    </>
   );
 }
 

@@ -2,7 +2,10 @@ import * as path from "path";
 import { readdir, readFile } from "fs/promises";
 import { compileMDX, type MDXRemoteProps } from "next-mdx-remote/rsc";
 import { z, type ZodRawShape, type ZodObject } from "zod";
-import { fileNameToSlug, dataSchemaVaridator } from "./utils";
+import {
+  fileNameToSlug,
+  dataSchemaVaridator,
+} from "@cieloazul310/regista-utils";
 
 const defaultFrontmatterSchema = z.object({
   title: z.string(),

@@ -37,7 +37,7 @@ async function Page({ params }: PageProps) {
     <div>
       <PageHeader title={`${item.year}年`} />
       <table>
-        <thead>{head}</thead>
+        <thead>{head("year")}</thead>
         <tbody>{clubData.map(({ data }) => renderRow(data, "year"))}</tbody>
       </table>
     </div>

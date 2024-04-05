@@ -60,16 +60,16 @@ const tbodyCellStyle = (field: PLField) => {
     css({
       textAlign: "right",
       fontFamily: "Arial",
-      bg: "bg.canvas",
+      bg: "bg.default",
     }),
     emphasized ? emphasizedStyle : undefined,
   );
 };
 
 function createPLTable() {
-  const head = (
+  const head = (mode: "club" | "year") => (
     <tr>
-      <th scope="column">年</th>
+      <th scope="column">{mode === "club" ? "年" : "クラブ"}</th>
       {plField.map((field) => (
         <th className={theadCellStyle} scope="column" key={field}>
           {financial.schema.shape[field]?.description}
