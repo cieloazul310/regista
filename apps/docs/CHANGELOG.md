@@ -1,5 +1,13 @@
 # docs
 
+## 0.0.7
+
+### Patch Changes
+
+- a05e4a2: divide packages
+- Updated dependencies [a05e4a2]
+  - @cieloazul310/regista@0.0.7
+
 ## 0.0.6
 
 ### Patch Changes

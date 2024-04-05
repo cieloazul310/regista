@@ -1,5 +1,11 @@
 # @repo/typescript-config
 
+## 0.0.7
+
+### Patch Changes
+
+- a05e4a2: divide packages
+
 ## 0.0.6
 
 ### Patch Changes
