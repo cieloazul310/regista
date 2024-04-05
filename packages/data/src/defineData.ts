@@ -6,7 +6,7 @@ import {
   dataFormatter,
   type DataFormat,
   type DataMetadata,
-} from "./utils";
+} from "@cieloazul310/regista-utils";
 
 export default function defineData<T extends ZodType>({
   contentPath,
