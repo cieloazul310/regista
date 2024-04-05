@@ -1,7 +1,7 @@
 {
   "name": "@cieloazul310/regista-mdx",
   "description": "Simple and type-safe Markdown/MDX content management tool for Next.js App Router",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "main": "module/index.js",
   "module": "module/index.js",
   "types": "module/index.d.ts",
@@ -29,7 +29,7 @@
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {
-    "@cieloazul310/regista-utils": "^0.0.6",
+    "@cieloazul310/regista-utils": "^0.0.7",
     "next-mdx-remote": "^4.4.1",
     "zod": "^3.22.4"
   },
