@@ -14,7 +14,6 @@ function DrawerServer(props: ParkDrawer.RootProps) {
             bottom: 4,
             right: 4,
             zIndex: "banner",
-            hideFrom: "md",
             shadow: "lg",
           })}
           size="xl"
