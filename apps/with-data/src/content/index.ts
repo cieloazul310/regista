@@ -1,20 +1,5 @@
 import * as path from "path";
-import {
-  z,
-  defineMdx,
-  defineData,
-  defineDataFromFile,
-} from "@cieloazul310/regista";
-
-export const post = defineMdx({
-  contentPath: path.resolve(process.cwd(), "content/post"),
-  basePath: "/post",
-  schema: {
-    club: z.array(z.string()).optional(),
-  },
-});
-export type PostFrontmatter = z.infer<typeof post.schema>;
-export type PostMetadata = z.infer<typeof post.metadataSchema>;
+import { z, defineData, defineDataFromFile } from "@cieloazul310/regista-data";
 
 export const categories = z.enum(["J1", "J2", "J3"]);
 
