@@ -1,8 +1,8 @@
 {
-  "extends": "@repo/typescript-config/mjs.json",
+  "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
-    "outDir": "module"
+    "outDir": "lib"
   },
   "include": ["src"],
-  "exclude": ["node_modules", "module"]
+  "exclude": ["node_modules", "lib", "module"]
 }

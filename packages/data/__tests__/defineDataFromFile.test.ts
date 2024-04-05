@@ -2,7 +2,7 @@ import * as path from "path";
 import { z } from "zod";
 import defineDataFromFile from "../src/defineDataFromFile";
 
-const testDir = "packages/core/__tests__";
+const testDir = "packages/data/__tests__";
 
 describe("default", () => {
   const categories = defineDataFromFile({

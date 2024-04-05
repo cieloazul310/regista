@@ -2,11 +2,26 @@
   "name": "@cieloazul310/regista-data",
   "description": "Simple and type-safe Markdown/MDX content management tool for Next.js App Router",
   "version": "0.0.6",
-  "main": "module/index.js",
+  "main": "lib/index.js",
   "module": "module/index.js",
-  "types": "module/index.d.ts",
+  "types": "lib/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./module/index.d.ts",
+        "default": "./module/index.js"
+      },
+      "require": {
+        "types": "./lib/index.d.ts",
+        "default": "./lib/index.js"
+      },
+      "default": "./lib/index.js"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
-    "module"
+    "module",
+    "lib"
   ],
   "license": "MIT",
   "author": {
@@ -22,10 +37,14 @@
     "access": "public"
   },
   "scripts": {
-    "tsc": "tsc -p ./tsconfig.json",
+    "tsc": "npm run tsc:cjs && npm run tsc:mjs",
+    "tsc:cjs": "tsc -p ./tsconfig.json",
+    "tsc:mjs": "tsc -p ./tsconfig.mjs.json",
     "clean": "git clean -fx lib/ module/",
     "build": "npm run clean && npm run tsc",
-    "dev": "npm run tsc -- --watch",
+    "dev": "concurrently \"dev:cjs\" \"dev:mjs\"",
+    "dev:cjs": "npm run tsc:cjs -- --watch",
+    "dev:mjs": "npm run tsc:mjs -- --watch",
     "lint": "eslint . --max-warnings 0"
   },
   "dependencies": {

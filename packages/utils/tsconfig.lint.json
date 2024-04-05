@@ -4,5 +4,5 @@
     "outDir": "dist"
   },
   "include": ["src", "turbo", "__tests__", ".eslintrc.cjs"],
-  "exclude": ["node_modules", "module"]
+  "exclude": ["node_modules", "lib", "module"]
 }
