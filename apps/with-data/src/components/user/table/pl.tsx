@@ -1,5 +1,5 @@
-import { cx, css } from "styled-system/css";
-import { financial, type FinancialSchema } from "@/content";
+import { type FinancialSchema } from "@/content";
+import createRow from "./row";
 
 export type PLField = Extract<
   keyof FinancialSchema,
@@ -13,6 +13,22 @@ export type PLField = Extract<
   | "sp_exp"
   | "profit_before_tax"
   | "tax"
+  | "profit"
+  | "related_revenue"
+>;
+
+export type BSField = Extract<
+  keyof FinancialSchema,
+  | "assets"
+  | "curr_assets"
+  | "fixed_assets"
+  | "liabilities"
+  | "curr_liabilities"
+  | "fixed_liabilities"
+  | "net_worth"
+  | "capital_stock"
+  | "capital_surplus"
+  | "retained_earnings"
   | "profit"
 >;
 
@@ -28,72 +44,43 @@ export const plField: PLField[] = [
   "profit_before_tax",
   "tax",
   "profit",
+  "related_revenue",
 ];
 
-const cellStyle = css({
-  px: 2,
-  py: 1,
-});
-const theadCellStyle = cx(
-  cellStyle,
-  css({
-    textAlign: "center",
-    fontWeight: "bold",
-    fontSize: "sm",
-    lineHeight: 1.2,
-    minWidth: "6em",
+export const bsField: BSField[] = [
+  "assets",
+  "curr_assets",
+  "fixed_assets",
+  "liabilities",
+  "curr_liabilities",
+  "fixed_liabilities",
+  "net_worth",
+  "capital_stock",
+  "capital_surplus",
+  "retained_earnings",
+  "profit",
+];
+
+export default {
+  pl: createRow({
+    fields: plField,
+    emphasizedFields: [
+      "revenue",
+      "expense",
+      "op_profit",
+      "ordinary_profit",
+      "profit",
+    ],
+    bgEmphasizedFields: [
+      "op_profit",
+      "ordinary_profit",
+      "profit_before_tax",
+      "profit",
+    ],
   }),
-);
-const tbodyCellStyle = (field: PLField) => {
-  const emphasized = [
-    "op_profit",
-    "ordinary_profit",
-    "profit_before_tax",
-    "profit",
-  ].includes(field);
-  const emphasizedStyle = css({
-    bg: "accent.a2",
-  });
-
-  return cx(
-    cellStyle,
-    css({
-      textAlign: "right",
-      fontFamily: "Arial",
-      bg: "bg.default",
-    }),
-    emphasized ? emphasizedStyle : undefined,
-  );
+  bs: createRow({
+    fields: bsField,
+    emphasizedFields: ["assets", "liabilities", "net_worth"],
+    bgEmphasizedFields: ["assets", "liabilities", "net_worth"],
+  }),
 };
-
-function createPLTable() {
-  const head = (mode: "club" | "year") => (
-    <tr>
-      <th scope="column">{mode === "club" ? "年" : "クラブ"}</th>
-      {plField.map((field) => (
-        <th className={theadCellStyle} scope="column" key={field}>
-          {financial.schema.shape[field]?.description}
-        </th>
-      ))}
-    </tr>
-  );
-  const renderRow = (
-    data: Pick<FinancialSchema, "name" | "year" | PLField>,
-    mode: "club" | "year",
-  ) => (
-    <tr key={data.year.toString()}>
-      <th className={theadCellStyle} scope="row">
-        {mode === "club" ? data.year : data.name}
-      </th>
-      {plField.map((field) => (
-        <td className={tbodyCellStyle(field)} key={field}>
-          {data[field]}
-        </td>
-      ))}
-    </tr>
-  );
-
-  return { head, renderRow };
-}
-
-export default createPLTable;

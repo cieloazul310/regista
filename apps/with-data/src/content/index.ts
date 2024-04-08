@@ -10,6 +10,7 @@ export const financial = defineData({
     name: z.string(),
     year: z.number().gte(2005),
     category: categories,
+    rank: z.number().nonnegative(),
     revenue: z.number({ description: "営業収入" }).nonnegative(),
     expense: z.number({ description: "営業収入" }).nonnegative(),
     op_profit: z.number({ description: "営業利益" }),
@@ -21,6 +22,32 @@ export const financial = defineData({
     profit_before_tax: z.number({ description: "税引き前利益" }).optional(),
     tax: z.number({ description: "住民税等" }).optional(),
     profit: z.number({ description: "当期純利益" }),
+    related_revenue: z
+      .number({ description: "関連する法人の営業収益" })
+      .nonnegative()
+      .optional(),
+    assets: z.number({ description: "資産の部" }).nonnegative(),
+    curr_assets: z.number({ description: "流動資産" }).nonnegative().optional(),
+    fixed_assets: z
+      .number({ description: "固定資産等" })
+      .nonnegative()
+      .optional(),
+    liabilities: z.number({ description: "負債の部" }).nonnegative(),
+    curr_liabilities: z
+      .number({ description: "流動負債" })
+      .nonnegative()
+      .optional(),
+    fixed_liabilities: z
+      .number({ description: "固定負債" })
+      .nonnegative()
+      .optional(),
+    net_worth: z.number({ description: "純資産の部" }),
+    capital_stock: z.number({ description: "資本金" }).nonnegative().optional(),
+    capital_surplus: z
+      .number({ description: "資本剰余金等" })
+      .nonnegative()
+      .optional(),
+    retained_earnings: z.number({ description: "利益剰余金等" }).optional(),
   }),
 });
 export type FinancialSchema = z.infer<typeof financial.schema>;
