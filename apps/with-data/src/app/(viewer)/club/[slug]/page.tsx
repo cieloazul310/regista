@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { css } from "styled-system/css";
-import { VStack } from "styled-system/jsx";
-import { Header, createPLTable } from "@/components";
+import { vstack } from "styled-system/patterns";
+import { Flex } from "styled-system/jsx";
+import { Header, Table, THead, TBody, createPLTable } from "@/components";
 import { financial, clubCollection } from "@/content";
 
 export async function generateStaticParams() {
@@ -34,24 +35,52 @@ async function Page({ params }: PageProps) {
     .filter(({ data }) => data.slug === slug)
     .sort((a, b) => a.data.year - b.data.year);
 
-  const { head, renderRow } = createPLTable();
+  const { head, renderRow } = createPLTable.pl;
 
   return (
     <>
       <Header title={item.name} />
-      <VStack
-        gap="md"
-        alignItems="stretch"
-        maxWidth="content-width"
-        margin="auto"
-      >
-        <section className={css({ bg: "bg.default" })}>
-          <table>
-            <thead>{head("club")}</thead>
-            <tbody>{clubData.map(({ data }) => renderRow(data, "club"))}</tbody>
-          </table>
-        </section>
-      </VStack>
+      <div className={css({ maxWidth: "full" })}>
+        <Flex
+          className={css({
+            width: "full",
+            minHeight: "calc(100vh - {sizes.header-height})",
+            margin: "auto",
+            flexDirection: "row",
+            pb: "lg",
+            gap: "lg",
+          })}
+        >
+          <main
+            className={vstack({
+              gap: "lg",
+              alignItems: "stretch",
+              flexGrow: 1,
+              bg: "bg.default",
+              rounded: "l2",
+              width: "full",
+              mx: "auto",
+              px: "main-px",
+              py: "lg",
+            })}
+          >
+            <section
+              className={css({
+                bg: "bg.default",
+                mx: "auto",
+                maxWidth: "full",
+              })}
+            >
+              <Table>
+                <THead>{head("club")}</THead>
+                <TBody>
+                  {clubData.map(({ data }) => renderRow(data, "club"))}
+                </TBody>
+              </Table>
+            </section>
+          </main>
+        </Flex>
+      </div>
     </>
   );
 }

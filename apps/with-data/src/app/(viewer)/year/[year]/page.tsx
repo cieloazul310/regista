@@ -1,5 +1,8 @@
 import type { Metadata } from "next";
-import { PageHeader, createPLTable } from "@/components";
+import { css } from "styled-system/css";
+import { vstack } from "styled-system/patterns";
+import { Flex } from "styled-system/jsx";
+import { Header, Table, THead, TBody, createPLTable } from "@/components";
 import { financial, yearCollection } from "@/content";
 
 export async function generateStaticParams() {
@@ -31,16 +34,53 @@ async function Page({ params }: PageProps) {
   const clubData = allData
     .filter(({ data }) => data.year === parseInt(year, 10))
     .sort((a, b) => a.data.year - b.data.year);
-  const { head, renderRow } = createPLTable();
+  const { head, renderRow } = createPLTable.pl;
 
   return (
-    <div>
-      <PageHeader title={`${item.year}年`} />
-      <table>
-        <thead>{head("year")}</thead>
-        <tbody>{clubData.map(({ data }) => renderRow(data, "year"))}</tbody>
-      </table>
-    </div>
+    <>
+      <Header title={`${item.year}年Jクラブ経営情報`} />
+      <div className={css({ maxWidth: "full" })}>
+        <Flex
+          className={css({
+            width: "full",
+            minHeight: "calc(100vh - {sizes.header-height})",
+            margin: "auto",
+            flexDirection: "row",
+            pb: "lg",
+            gap: "lg",
+          })}
+        >
+          <main
+            className={vstack({
+              gap: "lg",
+              alignItems: "stretch",
+              flexGrow: 1,
+              bg: "bg.default",
+              rounded: "l2",
+              width: "full",
+              mx: "auto",
+              px: "main-px",
+              py: "lg",
+            })}
+          >
+            <section
+              className={css({
+                bg: "bg.default",
+                mx: "auto",
+                maxWidth: "full",
+              })}
+            >
+              <Table>
+                <THead>{head("year")}</THead>
+                <TBody>
+                  {clubData.map(({ data }) => renderRow(data, "year"))}
+                </TBody>
+              </Table>
+            </section>
+          </main>
+        </Flex>
+      </div>
+    </>
   );
 }
 

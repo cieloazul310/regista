@@ -4,7 +4,7 @@ import { ColorModeHandler } from "../client";
 import { Button, IconButton, Drawer as ParkDrawer } from "../ui";
 import Menu from "./menu";
 
-function DrawerServer(props: ParkDrawer.RootProps) {
+function Drawer(props: ParkDrawer.RootProps) {
   return (
     <ParkDrawer.Root {...props}>
       <ParkDrawer.Trigger asChild>
@@ -55,4 +55,4 @@ function DrawerServer(props: ParkDrawer.RootProps) {
   );
 }
 
-export default DrawerServer;
+export default Drawer;
