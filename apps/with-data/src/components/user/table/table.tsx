@@ -5,6 +5,7 @@ export function Table({ children }: PropsWithChildren) {
   return (
     <div
       className={css({
+        width: "full",
         maxWidth: "full",
         overflowX: "auto",
         overflowY: "auto",
@@ -33,5 +34,21 @@ export function THead({ children }: PropsWithChildren) {
 }
 
 export function TBody({ children }: PropsWithChildren) {
-  return <tbody>{children}</tbody>;
+  return (
+    <tbody className={css({ borderBottomRadius: "l2" })}>{children}</tbody>
+  );
+}
+
+export function TBodyRow({ children }: PropsWithChildren) {
+  return (
+    <tr
+      className={css({
+        borderBottomColor: "accent.4",
+        borderBottomWidth: "1px",
+        _hover: { bg: "accent.a2" },
+      })}
+    >
+      {children}
+    </tr>
+  );
 }

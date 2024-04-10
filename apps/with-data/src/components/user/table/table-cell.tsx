@@ -28,9 +28,11 @@ export const TableBodyHeadCell = styled(ark.th, {
     lineHeight: 1.2,
     minWidth: "6em",
     position: "sticky",
-    bg: "bg.default",
+    bg: { base: undefined, _first: "bg.default" },
     left: { base: undefined, _first: 0 },
     zIndex: { base: 1, _first: 2 },
+    borderRightColor: "accent.4",
+    borderRightWidth: "1px",
   },
 });
 
@@ -41,6 +43,8 @@ export const TableBodyCell = styled(ark.td, {
     textAlign: "right",
     fontFamily: "Arial, sans-serif",
     zIndex: 0,
+    borderRightColor: "accent.4",
+    borderRightWidth: "1px",
   },
   variants: {
     emphasized: {

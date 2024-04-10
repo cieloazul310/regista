@@ -15,7 +15,7 @@ export default function Layout({ children }: PropsWithChildren) {
             maxWidth: "content-width",
             minHeight: "calc(100vh - {sizes.header-height})",
             margin: "auto",
-            flexDirection: { base: "column-reverse", md: "row" },
+            flexDirection: { base: "column", md: "row-reverse" },
             pb: "lg",
             gap: { base: "lg", md: "sm" },
           })}

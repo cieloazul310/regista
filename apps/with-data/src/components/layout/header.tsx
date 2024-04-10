@@ -1,6 +1,8 @@
+import { Suspense } from "react";
 import NextLink from "next/link";
 import { flex } from "styled-system/patterns";
-import { Heading } from "../ui";
+import { Circle } from "styled-system/jsx";
+import { Heading, Skeleton } from "../ui";
 import { ColorModeHandler } from "../client";
 import Address from "./address";
 
@@ -29,7 +31,15 @@ function Header({ title }: HeaderProps) {
         <NextLink href="/">{title}</NextLink>
       </Heading>
       <Address />
-      <ColorModeHandler />
+      <Suspense
+        fallback={
+          <Skeleton borderRadius="l2">
+            <Circle size={8} />
+          </Skeleton>
+        }
+      >
+        <ColorModeHandler />
+      </Suspense>
     </header>
   );
 }

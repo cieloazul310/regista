@@ -1,52 +1,68 @@
-import { financial, type FinancialSchema } from "@/content";
-import { TableHeadCell, TableBodyHeadCell, TableBodyCell } from "./table-cell";
+import type { ReactNode } from "react";
+import type { FinancialSchema } from "@/content";
+import createRow from "./createRow";
+import createRevenueRow from "./revenue";
+import createExpenseRow from "./expense";
+import type {
+  Tab,
+  Mode,
+  PLField,
+  BSField,
+  RevenueField,
+  ExpenseField,
+} from "./types";
 
-function createRow<T extends keyof FinancialSchema>({
-  fields,
-  emphasizedFields = [],
-  bgEmphasizedFields = [],
-}: {
-  fields: T[];
-  emphasizedFields?: T[];
-  bgEmphasizedFields?: T[];
-}) {
-  const head = (mode: "club" | "year") => (
-    <tr>
-      <TableHeadCell scope="column">
-        {mode === "club" ? "年" : "クラブ"}
-      </TableHeadCell>
-      <TableHeadCell scope="column">順位</TableHeadCell>
-      <TableHeadCell scope="column">所属</TableHeadCell>
-      {fields.map((field) => (
-        <TableHeadCell scope="column" key={field}>
-          {financial.schema.shape[field]?.description}
-        </TableHeadCell>
-      ))}
-    </tr>
-  );
-  const renderRow = (
-    data: Pick<FinancialSchema, "name" | "year" | "category" | "rank" | T>,
-    mode: "club" | "year",
-  ) => (
-    <tr key={data.year.toString()}>
-      <TableBodyHeadCell scope="row">
-        {mode === "club" ? data.year : data.name}
-      </TableBodyHeadCell>
-      <TableBodyHeadCell scope="row">{data.category}</TableBodyHeadCell>
-      <TableBodyHeadCell scope="row">{data.rank}</TableBodyHeadCell>
-      {fields.map((field) => (
-        <TableBodyCell
-          key={field}
-          emphasized={emphasizedFields.includes(field)}
-          bgEmphasized={bgEmphasizedFields.includes(field)}
-        >
-          {data[field]}
-        </TableBodyCell>
-      ))}
-    </tr>
-  );
+export const plField: PLField[] = [
+  "revenue",
+  "expense",
+  "op_profit",
+  "no_rev",
+  "no_exp",
+  "ordinary_profit",
+  "sp_rev",
+  "sp_exp",
+  "profit_before_tax",
+  "tax",
+  "profit",
+  "related_revenue",
+];
 
-  return { head, renderRow };
-}
+export const bsField: BSField[] = [
+  "assets",
+  "curr_assets",
+  "fixed_assets",
+  "liabilities",
+  "curr_liabilities",
+  "fixed_liabilities",
+  "net_worth",
+  "capital_stock",
+  "capital_surplus",
+  "retained_earnings",
+  "profit",
+];
 
-export default createRow;
+export default {
+  pl: createRow({
+    fields: plField,
+    emphasizedFields: [
+      "revenue",
+      "expense",
+      "op_profit",
+      "ordinary_profit",
+      "profit",
+    ],
+    bgEmphasizedFields: [
+      "op_profit",
+      "ordinary_profit",
+      "profit_before_tax",
+      "profit",
+    ],
+  }),
+  bs: createRow({
+    fields: bsField,
+    emphasizedFields: ["assets", "liabilities", "net_worth"],
+    bgEmphasizedFields: ["assets", "liabilities", "net_worth"],
+  }),
+  revenue: createRevenueRow(),
+  expense: createExpenseRow(),
+};

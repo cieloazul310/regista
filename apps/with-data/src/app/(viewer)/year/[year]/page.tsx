@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { css } from "styled-system/css";
 import { vstack } from "styled-system/patterns";
 import { Flex } from "styled-system/jsx";
-import { Header, Table, THead, TBody, createPLTable } from "@/components";
+import { Header, FinancialTable } from "@/components";
 import { financial, yearCollection } from "@/content";
 
 export async function generateStaticParams() {
@@ -34,7 +34,6 @@ async function Page({ params }: PageProps) {
   const clubData = allData
     .filter(({ data }) => data.year === parseInt(year, 10))
     .sort((a, b) => a.data.year - b.data.year);
-  const { head, renderRow } = createPLTable.pl;
 
   return (
     <>
@@ -63,20 +62,7 @@ async function Page({ params }: PageProps) {
               py: "lg",
             })}
           >
-            <section
-              className={css({
-                bg: "bg.default",
-                mx: "auto",
-                maxWidth: "full",
-              })}
-            >
-              <Table>
-                <THead>{head("year")}</THead>
-                <TBody>
-                  {clubData.map(({ data }) => renderRow(data, "year"))}
-                </TBody>
-              </Table>
-            </section>
+            <FinancialTable items={clubData} mode="year" />
           </main>
         </Flex>
       </div>
