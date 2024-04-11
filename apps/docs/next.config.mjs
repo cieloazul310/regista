@@ -27,6 +27,7 @@ const nextConfig = {
     unoptimized: true,
   },
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
+  transpilePackages: ["@cieloazul310/regista"],
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
