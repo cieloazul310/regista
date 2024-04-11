@@ -12,7 +12,7 @@ export const financial = defineData({
     category: categories,
     rank: z.number().nonnegative(),
     revenue: z.number({ description: "営業収入" }).nonnegative(),
-    expense: z.number({ description: "営業収入" }).nonnegative(),
+    expense: z.number({ description: "営業費用" }).nonnegative(),
     op_profit: z.number({ description: "営業利益" }),
     no_rev: z.number({ description: "営業外収益" }).optional(),
     no_exp: z.number({ description: "営業外費用" }).optional(),
@@ -48,6 +48,62 @@ export const financial = defineData({
       .nonnegative()
       .optional(),
     retained_earnings: z.number({ description: "利益剰余金等" }).optional(),
+    sponsor: z
+      .number({ description: "スポンサー収入" })
+      .nonnegative()
+      .optional(),
+    ticket: z.number({ description: "入場料収入" }).nonnegative().optional(),
+    broadcast: z
+      .number({ description: "Jリーグ配分金" })
+      .nonnegative()
+      .optional(),
+    academy_rev: z
+      .number({ description: "アカデミー関連収入" })
+      .nonnegative()
+      .optional(),
+    women_rev: z
+      .number({ description: "女子チーム関連収入" })
+      .nonnegative()
+      .optional(),
+    goods_rev: z
+      .number({ description: "物販関連収入" })
+      .nonnegative()
+      .optional(),
+    other_revs: z
+      .number({ description: "その他収入" })
+      .nonnegative()
+      .optional(),
+    salary: z.number({ description: "チーム人件費" }).nonnegative().optional(),
+    game_exp: z
+      .number({ description: "試合関連経費" })
+      .nonnegative()
+      .optional(),
+    team_exp: z
+      .number({ description: "トップチーム関連経費" })
+      .nonnegative()
+      .optional(),
+    academy_exp: z
+      .number({ description: "アカデミー関連経費" })
+      .nonnegative()
+      .optional(),
+    women_exp: z
+      .number({ description: "女子チーム関連経費" })
+      .nonnegative()
+      .optional(),
+    goods_exp: z
+      .number({ description: "物販関連経費" })
+      .nonnegative()
+      .optional(),
+    other_cost: z
+      .number({ description: "その他売上原価" })
+      .nonnegative()
+      .optional(),
+    sga: z
+      .number({ description: "販売費及び一般管理費" })
+      .nonnegative()
+      .optional(),
+    manage_exp: z.number({ description: "事業費" }).nonnegative().optional(),
+    general_exp: z.number({ description: "総事業費" }).nonnegative().optional(),
   }),
 });
 export type FinancialSchema = z.infer<typeof financial.schema>;

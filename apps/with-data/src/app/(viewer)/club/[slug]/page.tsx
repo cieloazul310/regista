@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { css } from "styled-system/css";
 import { vstack } from "styled-system/patterns";
 import { Flex } from "styled-system/jsx";
-import { Header, Table, THead, TBody, createPLTable } from "@/components";
+import { Header, FinancialTable } from "@/components";
 import { financial, clubCollection } from "@/content";
 
 export async function generateStaticParams() {
@@ -35,11 +35,9 @@ async function Page({ params }: PageProps) {
     .filter(({ data }) => data.slug === slug)
     .sort((a, b) => a.data.year - b.data.year);
 
-  const { head, renderRow } = createPLTable.pl;
-
   return (
     <>
-      <Header title={item.name} />
+      <Header title={`${item.name}の経営情報`} />
       <div className={css({ maxWidth: "full" })}>
         <Flex
           className={css({
@@ -64,20 +62,7 @@ async function Page({ params }: PageProps) {
               py: "lg",
             })}
           >
-            <section
-              className={css({
-                bg: "bg.default",
-                mx: "auto",
-                maxWidth: "full",
-              })}
-            >
-              <Table>
-                <THead>{head("club")}</THead>
-                <TBody>
-                  {clubData.map(({ data }) => renderRow(data, "club"))}
-                </TBody>
-              </Table>
-            </section>
+            <FinancialTable items={clubData} mode="club" />
           </main>
         </Flex>
       </div>

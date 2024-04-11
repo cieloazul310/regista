@@ -121,6 +121,14 @@ Dynamic Routes
 - [defineData](./docs/api/defineData.md)
 - [defineDataFromFile](./docs/api/defineDataFromFile.md)
 
+## Examples
+
+Default usage  
+<https://cieloazul310.github.io/regista>
+
+With data example (without mdx)  
+<https://regista-with-data.vercel.app>
+
 ## Reference
 
 - [Zod]
