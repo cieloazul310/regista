@@ -58,7 +58,7 @@ function createExpenseRow() {
       </>
     );
     const expenseData = (year: number) => {
-      if (year <= 2005 && salary)
+      if (year <= 2005 && !salary)
         return (
           <>
             <TableBodyCell align="center" colSpan={8}>

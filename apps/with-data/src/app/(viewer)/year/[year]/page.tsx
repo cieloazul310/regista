@@ -1,8 +1,5 @@
 import type { Metadata } from "next";
-import { css } from "styled-system/css";
-import { vstack } from "styled-system/patterns";
-import { Flex } from "styled-system/jsx";
-import { Header, FinancialTable } from "@/components";
+import { FinancialTable } from "@/components";
 import { financial, yearCollection } from "@/content";
 
 export async function generateStaticParams() {
@@ -35,39 +32,7 @@ async function Page({ params }: PageProps) {
     .filter(({ data }) => data.year === parseInt(year, 10))
     .sort((a, b) => a.data.year - b.data.year);
 
-  return (
-    <>
-      <Header title={`${item.year}年Jクラブ経営情報`} />
-      <div className={css({ maxWidth: "full" })}>
-        <Flex
-          className={css({
-            width: "full",
-            minHeight: "calc(100vh - {sizes.header-height})",
-            margin: "auto",
-            flexDirection: "row",
-            pb: "lg",
-            gap: "lg",
-          })}
-        >
-          <main
-            className={vstack({
-              gap: "lg",
-              alignItems: "stretch",
-              flexGrow: 1,
-              bg: "bg.default",
-              rounded: "l2",
-              width: "full",
-              mx: "auto",
-              px: "main-px",
-              py: "lg",
-            })}
-          >
-            <FinancialTable items={clubData} mode="year" />
-          </main>
-        </Flex>
-      </div>
-    </>
-  );
+  return <FinancialTable items={clubData} mode="year" />;
 }
 
 export default Page;

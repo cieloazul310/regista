@@ -1,13 +1,11 @@
-import { Suspense } from "react";
-import NextLink from "next/link";
+import type { ReactNode } from "react";
 import { flex } from "styled-system/patterns";
-import { Circle } from "styled-system/jsx";
-import { Heading, Skeleton } from "../ui";
+import { Heading } from "../ui";
 import { ColorModeHandler } from "../client";
 import Address from "./address";
 
 type HeaderProps = {
-  title: string;
+  title: ReactNode;
 };
 
 function Header({ title }: HeaderProps) {
@@ -28,18 +26,10 @@ function Header({ title }: HeaderProps) {
       })}
     >
       <Heading as="h1" flexGrow={1}>
-        <NextLink href="/">{title}</NextLink>
+        {title}
       </Heading>
       <Address />
-      <Suspense
-        fallback={
-          <Skeleton borderRadius="l2">
-            <Circle size={8} />
-          </Skeleton>
-        }
-      >
-        <ColorModeHandler />
-      </Suspense>
+      <ColorModeHandler />
     </header>
   );
 }
