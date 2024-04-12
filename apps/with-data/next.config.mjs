@@ -22,7 +22,6 @@ const withMdx = createMDX({
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   pageExtensions: ["js", "jsx", "mdx", "ts", "tsx"],
-  transpilePackages: ["@cieloazul310/regista-data"],
   typescript: {
     // !! WARN !!
     // Dangerously allow production builds to successfully complete even if
