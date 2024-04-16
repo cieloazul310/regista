@@ -3,7 +3,8 @@ import type { Metadata } from "next";
 import { css } from "styled-system/css";
 import { vstack } from "styled-system/patterns";
 import { Flex } from "styled-system/jsx";
-import { Header, Menu, Drawer, Footer, Provider } from "@/components";
+import { Header, Menu, Drawer, Footer } from "@/components";
+import { ThemeProvider } from "@/providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -17,7 +18,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="ja" suppressHydrationWarning>
       <body>
-        <Provider>
+        <ThemeProvider>
           <Header />
           <div className={css({ maxWidth: "full" })}>
             <Flex
@@ -75,7 +76,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
           </div>
           <Drawer />
           <Footer />
-        </Provider>
+        </ThemeProvider>
       </body>
     </html>
   );

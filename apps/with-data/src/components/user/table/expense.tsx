@@ -1,7 +1,7 @@
 import type { FinancialSchema } from "@/content";
+import type { ExpenseField } from "@/types";
 import { TBodyRow } from "./table";
 import { TableHeadCell, TableBodyHeadCell, TableBodyCell } from "./table-cell";
-import type { ExpenseField } from "./types";
 
 function createExpenseRow() {
   const head = (mode: "club" | "year") => (

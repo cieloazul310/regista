@@ -1,4 +1,5 @@
-import { financial, type FinancialSchema } from "@/content";
+import type { FinancialSchema } from "@/content";
+import type { Mode } from "@/types";
 import { TBodyRow } from "./table";
 import { TableHeadCell, TableBodyHeadCell, TableBodyCell } from "./table-cell";
 
@@ -11,7 +12,7 @@ function createRow<T extends keyof FinancialSchema>({
   emphasizedFields?: T[];
   bgEmphasizedFields?: T[];
 }) {
-  const head = (mode: "club" | "year") => (
+  const head = (mode: Mode) => (
     <tr>
       <TableHeadCell scope="column">
         {mode === "club" ? "年" : "クラブ"}
@@ -20,14 +21,14 @@ function createRow<T extends keyof FinancialSchema>({
       <TableHeadCell scope="column">順位</TableHeadCell>
       {fields.map((field) => (
         <TableHeadCell scope="column" key={field}>
-          {financial.schema.shape[field]?.description}
+          {field}
         </TableHeadCell>
       ))}
     </tr>
   );
   const renderRow = (
     data: Pick<FinancialSchema, "name" | "year" | "category" | "rank" | T>,
-    mode: "club" | "year",
+    mode: Mode,
   ) => (
     <TBodyRow key={data.year.toString()}>
       <TableBodyHeadCell scope="row">

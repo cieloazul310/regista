@@ -1,6 +1,7 @@
 import type { PropsWithChildren } from "react";
 import type { Metadata } from "next";
-import { Footer, Provider } from "@/components";
+import { Footer } from "@/components";
+import { ThemeProvider } from "@/providers";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -13,10 +14,10 @@ export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="ja" suppressHydrationWarning>
       <body>
-        <Provider>
+        <ThemeProvider>
           {children}
           <Footer />
-        </Provider>
+        </ThemeProvider>
       </body>
     </html>
   );
