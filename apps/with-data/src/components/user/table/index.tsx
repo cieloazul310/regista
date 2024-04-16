@@ -1,11 +1,15 @@
+"use client";
+
 import { css } from "styled-system/css";
 import { flex } from "styled-system/patterns";
+import type { TabsValueChangeDetails } from "@ark-ui/react";
 import type { FinancialSchema } from "@/content";
+import type { Tab, Mode } from "@/types";
 import { Table, THead, TBody } from "./table";
 import Tabs from "./tabs";
+import { useTableStore } from "@/providers";
 import { Tabs as ParkTabs } from "../../ui";
 import row from "./row";
-import type { Tab, Mode } from "./types";
 
 type FinancialTableProps = {
   items: {
@@ -22,6 +26,11 @@ const options: { id: Tab; label: string }[] = [
 ];
 
 export function FinancialTable({ items, mode }: FinancialTableProps) {
+  const { tab, setTab } = useTableStore((store) => store);
+  const onValueChange = (details: TabsValueChangeDetails) => {
+    setTab(details.value as Tab);
+  };
+
   return (
     <section
       className={flex({
@@ -34,7 +43,8 @@ export function FinancialTable({ items, mode }: FinancialTableProps) {
       <Tabs
         className={css({ width: "full" })}
         size="sm"
-        defaultValue="pl"
+        defaultValue={tab}
+        onValueChange={onValueChange}
         orientation="horizontal"
         variant="enclosed"
         options={options}
@@ -54,5 +64,3 @@ export function FinancialTable({ items, mode }: FinancialTableProps) {
     </section>
   );
 }
-
-export * from "./types";

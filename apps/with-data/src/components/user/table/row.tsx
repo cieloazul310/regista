@@ -1,16 +1,7 @@
-import type { ReactNode } from "react";
-import type { FinancialSchema } from "@/content";
+import type { PLField, BSField } from "@/types";
 import createRow from "./createRow";
 import createRevenueRow from "./revenue";
 import createExpenseRow from "./expense";
-import type {
-  Tab,
-  Mode,
-  PLField,
-  BSField,
-  RevenueField,
-  ExpenseField,
-} from "./types";
 
 export const plField: PLField[] = [
   "revenue",
