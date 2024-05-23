@@ -29,7 +29,6 @@ async function Page({ params }: { params: { slug: string[] } }) {
       mdxOptions: {
         rehypePlugins: [
           [
-            // @ts-expect-error
             rehypeShiki,
             {
               themes: {

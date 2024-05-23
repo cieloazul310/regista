@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import { fileNameToSlug } from "../src/utils";
 
 function arrayMatcher<T>(input: T[], expected: T[]) {

@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import * as path from "path";
 import { z } from "zod";
 import defineData from "../src/defineData";
