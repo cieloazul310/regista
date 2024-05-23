@@ -1,6 +1,10 @@
 import * as path from "path";
 import { readdir, readFile } from "fs/promises";
-import { compileMDX, type MDXRemoteProps } from "next-mdx-remote/rsc";
+import * as runtime from "react/jsx-runtime";
+import { compile, run, type CompileOptions } from "@mdx-js/mdx";
+import type { MDXComponents } from "mdx/types";
+import { VFile } from "vfile";
+import { matter } from "vfile-matter";
 import { z, type ZodRawShape, type ZodObject } from "zod";
 import {
   fileNameToSlug,
@@ -35,6 +39,14 @@ export type MdxMetadata<
   slug: string[];
   href: string;
 };
+
+export type UseMDXOptions = Partial<{
+  components: MDXComponents;
+  mdxOptions: Pick<
+    CompileOptions,
+    "remarkPlugins" | "recmaPlugins" | "rehypePlugins" | "remarkRehypeOptions"
+  >;
+}>;
 
 function complementFrontmatter<T extends Record<string, any>>({
   title,
@@ -103,14 +115,13 @@ export default function defineMdx<Z extends ZodRawShape>({
         files.map(async (filename) => {
           const absolutePath = path.join(contentPath, filename);
           const source = await readFile(absolutePath, { encoding: "utf8" });
-          const { frontmatter } = await compileMDX<
-            FrontmatterInput<RestFrontmatter>
-          >({
-            source,
-            options: { parseFrontmatter: true },
-          });
+          const vfile = new VFile(source);
+          matter(vfile, { strip: true });
+
           return {
-            data: complementFrontmatter(frontmatter),
+            data: complementFrontmatter(
+              vfile.data.matter as FrontmatterInput<RestFrontmatter>,
+            ),
             absolutePath,
             filename,
           };
@@ -156,24 +167,27 @@ export default function defineMdx<Z extends ZodRawShape>({
     return datum;
   }
 
-  async function useMdx(
-    slug: string[],
-    { components, options }: Omit<MDXRemoteProps, "source"> = {},
-  ) {
+  async function useMdx(slug: string[], options: UseMDXOptions = {}) {
     const datum = await get(slug);
     if (!datum) return null;
     const { absolutePath, context, frontmatter } = datum;
-    const file = await readFile(absolutePath, { encoding: "utf8" });
-    const { content } = await compileMDX({
-      source: file,
-      components,
-      options: {
-        ...options,
-        parseFrontmatter: true,
-      },
+    const source = await readFile(absolutePath, { encoding: "utf8" });
+    const vfile = new VFile(source);
+    matter(vfile, { strip: true });
+
+    const { components, mdxOptions } = options;
+
+    const code = String(
+      await compile(vfile, { outputFormat: "function-body", ...mdxOptions }),
+    );
+    // @ts-expect-error
+    const { default: MDXContent } = await run(code, {
+      ...runtime,
+      baseUrl: import.meta.url,
     });
+
     return {
-      content,
+      content: MDXContent({ components }),
       context,
       frontmatter,
     };
