@@ -30,7 +30,7 @@
   },
   "dependencies": {
     "@cieloazul310/regista-utils": "^0.0.7",
-    "next-mdx-remote": "0.0.0-canary-20240321205249",
+    "next-mdx-remote": "^5.0.0",
     "zod": "^3.22.4"
   },
   "devDependencies": {

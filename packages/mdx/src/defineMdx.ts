@@ -52,6 +52,9 @@ function complementFrontmatter<T extends Record<string, any>>({
   } as Frontmatter<T>;
 }
 
+/**
+ * https://cieloazul310.github.io/regista/api/defineMdx
+ */
 export default function defineMdx<Z extends ZodRawShape>({
   contentPath,
   basePath,

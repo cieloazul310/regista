@@ -8,6 +8,9 @@ import {
   type DataMetadata,
 } from "@cieloazul310/regista-utils";
 
+/**
+ * https://cieloazul310.github.io/regista/api/defineData
+ */
 export default function defineData<T extends ZodType>({
   contentPath,
   schema,
