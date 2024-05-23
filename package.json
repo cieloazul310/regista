@@ -23,7 +23,7 @@
     "lint-staged": "lint-staged"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.27.1",
+    "@changesets/cli": "^2.27.3",
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
     "@testing-library/jest-dom": "^6.4.5",
@@ -31,7 +31,7 @@
     "@vitejs/plugin-react": "^4.3.0",
     "concurrently": "^8.2.2",
     "jsdom": "^24.0.0",
-    "lint-staged": "^15.2.2",
+    "lint-staged": "^15.2.4",
     "prettier": "^3.2.5",
     "turbo": "latest",
     "vitest": "^1.6.0"
