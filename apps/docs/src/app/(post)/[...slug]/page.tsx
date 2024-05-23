@@ -1,4 +1,5 @@
 import NextLink from "next/link";
+import remarkGfm from "remark-gfm";
 import rehypeShiki from "@shikijs/rehype";
 import { css } from "styled-system/css";
 import { flex, vstack } from "styled-system/patterns";
@@ -25,19 +26,18 @@ async function Page({ params }: { params: { slug: string[] } }) {
   const components = useMDXComponents();
   const mdx = await post.useMdx(slug, {
     components,
-    options: {
-      mdxOptions: {
-        rehypePlugins: [
-          [
-            rehypeShiki,
-            {
-              themes: {
-                light: "slack-dark",
-              },
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [
+        [
+          rehypeShiki,
+          {
+            themes: {
+              light: "slack-dark",
             },
-          ],
+          },
         ],
-      },
+      ],
     },
   });
   if (!mdx) return null;
