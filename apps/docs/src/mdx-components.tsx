@@ -8,6 +8,7 @@ import {
   createHeadings,
   Image,
   Link,
+  createTables,
 } from "@/components/mdx";
 
 export function useMDXComponents(
@@ -21,6 +22,7 @@ export function useMDXComponents(
     hr: Hr,
     p: Paragraph,
     pre: Pre,
+    ...createTables(),
     ...createHeadings(),
     ...components,
   };

@@ -48,7 +48,7 @@ https://zod.dev/?id=objects
 
 #### `format` (*optional*)
 
-type: `"yaml" | "json"`
+type: `"yaml" | "json"`  
 default: `"yaml"`
 
 Specify the data format to read.
