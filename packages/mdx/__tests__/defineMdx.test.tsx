@@ -5,7 +5,6 @@ import { render, screen, cleanup } from "@testing-library/react";
 import "@testing-library/jest-dom/vitest";
 import * as path from "path";
 import { z } from "zod";
-// import type { MDXRemoteProps } from "next-mdx-remote/rsc";
 import defineMdx, { type UseMDXOptions } from "../src/defineMdx";
 
 const testDir = "packages/mdx/__tests__";
