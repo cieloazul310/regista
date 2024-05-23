@@ -229,11 +229,9 @@ async function Page() {
 
   const item = await post.useMdx(slug, {
     components,
-    options: {
-      mdxOptions: {
-        remarkPlugins: [],
-        rehypePlugins: [],
-      },
+    mdxOptions: {
+      remarkPlugins: [],
+      rehypePlugins: [],
     },
   });
   if (!item) return null;
@@ -241,6 +239,26 @@ async function Page() {
 
   return <article>{content}</article>;
 }
+```
+
+## Migration from v0
+
+### BREAKING CHANGE: `useMdx` options
+
+```diff_tsx
+const item = await post.useMdx(slug, {
+  components,
+- options: {
+-   mdxOptions: {
+-     remarkPlugins: [],
+-     rehypePlugins: [],
+-   },
+- },
++ mdxOptions: {
++   remarkPlugins: [],
++   rehypePlugins: [],
++ },
+});
 ```
 
 @mdx-js/mdx `CompileOptions`

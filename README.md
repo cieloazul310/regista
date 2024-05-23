@@ -129,6 +129,26 @@ Default usage
 With data example (without mdx)  
 <https://regista-with-data.vercel.app>
 
+## Migration from v0
+
+### BREAKING CHANGE: `useMdx` options
+
+```diff_tsx
+const item = await post.useMdx(slug, {
+  components,
+- options: {
+-   mdxOptions: {
+-     remarkPlugins: [],
+-     rehypePlugins: [],
+-   },
+- },
++ mdxOptions: {
++   remarkPlugins: [],
++   rehypePlugins: [],
++ },
+});
+```
+
 ## Reference
 
 - [Zod]
