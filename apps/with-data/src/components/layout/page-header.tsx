@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { flex, vstack, hstack } from "styled-system/patterns";
-import { Heading, Text } from "../ui";
+import { Heading } from "../ui/heading";
+import { Text } from "../ui/text";
 
 type PageHeaderProps = {
   title: string;

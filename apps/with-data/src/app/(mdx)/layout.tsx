@@ -2,7 +2,8 @@ import type { PropsWithChildren } from "react";
 import { css } from "styled-system/css";
 import { vstack } from "styled-system/patterns";
 import { Flex } from "styled-system/jsx";
-import { Header, Menu } from "@/components";
+import Header from "@/components/layout/header";
+import Menu from "@/components/layout/menu";
 
 export default function Layout({ children }: PropsWithChildren) {
   return (

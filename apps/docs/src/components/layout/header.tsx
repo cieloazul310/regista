@@ -1,7 +1,7 @@
 import NextLink from "next/link";
 import { flex } from "styled-system/patterns";
-import { Heading } from "../ui";
-import { ColorModeHandler } from "../client";
+import { Heading } from "../ui/heading";
+import ColorModeHandler from "../client/color-mode-handler";
 import Address from "./address";
 
 function Header() {

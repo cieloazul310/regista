@@ -1,6 +1,7 @@
 import NextLink from "next/link";
 import { vstack } from "styled-system/patterns";
-import { Heading, Text } from "../ui";
+import { Heading } from "../ui/heading";
+import { Text } from "../ui/text";
 import Address from "./address";
 
 function Footer() {

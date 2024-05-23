@@ -8,7 +8,7 @@ import {
   createHeadings,
   Image,
   Link,
-} from "@/components";
+} from "@/components/mdx";
 
 export function useMDXComponents(
   components: MDXComponents = {},

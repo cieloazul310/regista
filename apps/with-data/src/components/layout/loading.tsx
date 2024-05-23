@@ -1,5 +1,4 @@
 import { Flex, Circle } from "styled-system/jsx";
-// import { CircularProgress } from "../user";
 
 export default function Loading() {
   return (

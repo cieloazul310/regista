@@ -4,11 +4,11 @@ import { css } from "styled-system/css";
 import { flex } from "styled-system/patterns";
 import type { TabsValueChangeDetails } from "@ark-ui/react";
 import type { FinancialSchema } from "@/content";
+import { useTableStore } from "@/providers/table-store-provider";
 import type { Tab, Mode } from "@/types";
 import { Table, THead, TBody } from "./table";
 import Tabs from "./tabs";
-import { useTableStore } from "@/providers";
-import { Tabs as ParkTabs } from "../../ui";
+import * as ParkTabs from "../ui/tabs";
 import row from "./row";
 
 type FinancialTableProps = {

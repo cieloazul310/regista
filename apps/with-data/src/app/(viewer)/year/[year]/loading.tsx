@@ -1,5 +1,4 @@
 import { Flex } from "styled-system/jsx";
-// import { Loading as Loader } from "@/components";
 
 export default function Loading() {
   return (

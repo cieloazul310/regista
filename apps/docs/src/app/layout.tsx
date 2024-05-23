@@ -3,8 +3,11 @@ import type { Metadata } from "next";
 import { css } from "styled-system/css";
 import { vstack } from "styled-system/patterns";
 import { Flex } from "styled-system/jsx";
-import { Header, Menu, Drawer, Footer } from "@/components";
-import { ThemeProvider } from "@/providers";
+import Header from "@/components/layout/header";
+import Menu from "@/components/layout/menu";
+import Drawer from "@/components/layout/drawer";
+import Footer from "@/components/layout/footer";
+import ThemeProvider from "@/providers/theme-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {

@@ -2,8 +2,8 @@ import NextLink from "next/link";
 import rehypeShiki from "@shikijs/rehype";
 import { css } from "styled-system/css";
 import { flex, vstack } from "styled-system/patterns";
-import { PageHeader } from "@/components";
-import { Text } from "@/components/ui";
+import PageHeader from "@/components/layout/page-header";
+import { Text } from "@/components/ui/text";
 import { useMDXComponents } from "@/mdx-components";
 import { post } from "@/content";
 
