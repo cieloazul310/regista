@@ -41,6 +41,14 @@ You can change the location of stored content and data definitions as you like.
 npm install @cieloazul310/regista
 ```
 
+and install peer dependencies.
+
+```sh
+npm install --save-dev @mdx-js/mdx
+```
+
+If you are using `@next/mdx`, the above process is not necessary as `@mdx-js/loader` already has `@mdx-js/mdx` as a dependency.
+
 ### 2. Configure your content
 
 ```tsx
@@ -131,9 +139,17 @@ With data example (without mdx)
 
 ## Migration from v0
 
+### Install peerDependencies `@mdx-js/mdx`
+
+```sh
+npm install --save-dev @mdx-js/mdx
+```
+
+If you are using `@next/mdx`, the above process is not necessary as `@mdx-js/loader` already has `@mdx-js/mdx` as a dependency.
+
 ### BREAKING CHANGE: `useMdx` options
 
-```diff_tsx
+```diff
 const item = await post.useMdx(slug, {
   components,
 - options: {

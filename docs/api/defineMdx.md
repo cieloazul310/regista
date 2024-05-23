@@ -245,7 +245,7 @@ async function Page() {
 
 ### BREAKING CHANGE: `useMdx` options
 
-```diff_tsx
+```diff
 const item = await post.useMdx(slug, {
   components,
 - options: {

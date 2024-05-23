@@ -2,12 +2,16 @@
 
 Indivisual package of Regista for MDX. This package includes only [defineMDX](../../docs/api/defineMdx.md) function.
 
-Core packages: <https://github.com/cieloazul310/regista>
+Core package: <https://github.com/cieloazul310/regista>
 
 ## Installation
 
 ```sh
 npm install @cieloazul310/regista-mdx
+```
+
+```sh
+npm install --save-dev @mdx-js/mdx
 ```
 
 ## API
