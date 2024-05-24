@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { FinancialTable } from "@/components/table";
+import FinancialTable from "@/components/table";
 import { financial, clubCollection } from "@/content";
 
 export async function generateStaticParams() {

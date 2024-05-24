@@ -25,6 +25,9 @@ module.exports = {
       },
     },
   },
+  rules: {
+    "no-console": "off",
+  },
   ignorePatterns: [
     // Ignore dotfiles
     ".*.js",
@@ -34,6 +37,12 @@ module.exports = {
   overrides: [
     {
       files: ["*.?(m|c)js?(x)", "*.ts?(x)"],
+    },
+    {
+      files: ["**/__tests__/**/*"],
+      rules: {
+        "import/no-extraneous-dependencies": "off",
+      },
     },
   ],
 };

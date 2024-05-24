@@ -6,7 +6,19 @@ module.exports = {
   parserOptions: {
     project: true,
   },
+  ignorePatterns: ["styled-system"],
   overrides: [
+    {
+      files: [
+        "next.config.mjs",
+        "panda.config.ts",
+        "postcss.config.cjs",
+        "src/theme/*",
+      ],
+      rules: {
+        "import/no-extraneous-dependencies": "off",
+      },
+    },
     {
       files: "src/mdx-components.tsx",
       rules: {
@@ -14,9 +26,9 @@ module.exports = {
       },
     },
     {
-      files: ["src/theme/*", "panda.config.ts"],
+      files: ["src/components/table/**"],
       rules: {
-        "import/no-extraneous-dependencies": "off",
+        "@typescript-eslint/naming-convention": "off",
       },
     },
   ],

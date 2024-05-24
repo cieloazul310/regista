@@ -25,7 +25,7 @@ const options: { id: Tab; label: string }[] = [
   { id: "expense", label: "営業費用" },
 ];
 
-export function FinancialTable({ items, mode }: FinancialTableProps) {
+function FinancialTable({ items, mode }: FinancialTableProps) {
   const { tab, setTab } = useTableStore((store) => store);
   const onValueChange = (details: TabsValueChangeDetails) => {
     setTab(details.value as Tab);
@@ -64,3 +64,4 @@ export function FinancialTable({ items, mode }: FinancialTableProps) {
     </section>
   );
 }
+export default FinancialTable;

@@ -1,4 +1,5 @@
 /* eslint react/function-component-definition: off */
+/* eslint react/jsx-props-no-spreading: off */
 import * as React from "react";
 import { describe, it, expect } from "vitest";
 import { render, screen, cleanup } from "@testing-library/react";
@@ -86,8 +87,10 @@ describe("defineMdx", () => {
 
   it("render with custom component", async () => {
     const components = {
-      h2: (props: React.ComponentPropsWithoutRef<"h2">) => (
-        <h2 aria-current="page" {...props} />
+      h2: ({ children, ...props }: React.ComponentPropsWithoutRef<"h2">) => (
+        <h2 aria-current="page" {...props}>
+          {children}
+        </h2>
       ),
     };
 

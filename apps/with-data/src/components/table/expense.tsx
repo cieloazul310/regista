@@ -57,8 +57,8 @@ function createExpenseRow() {
         <TableBodyHeadCell scope="row">{rank}</TableBodyHeadCell>
       </>
     );
-    const expenseData = (year: number) => {
-      if (year <= 2005 && !salary)
+    const expenseData = (inputYear: number) => {
+      if (inputYear <= 2005 && !salary)
         return (
           <>
             <TableBodyCell align="center" colSpan={8}>
@@ -67,7 +67,7 @@ function createExpenseRow() {
             <TableBodyCell align="center">{sga}</TableBodyCell>
           </>
         );
-      if (year <= 2010)
+      if (inputYear <= 2010)
         return (
           <>
             <TableBodyCell>{salary}</TableBodyCell>
@@ -77,7 +77,7 @@ function createExpenseRow() {
             <TableBodyCell align="center">{sga}</TableBodyCell>
           </>
         );
-      if (year <= 2015)
+      if (inputYear <= 2015)
         return (
           <>
             <TableBodyCell>{salary}</TableBodyCell>
@@ -90,7 +90,7 @@ function createExpenseRow() {
             </TableBodyCell>
           </>
         );
-      if (year <= 2021)
+      if (inputYear <= 2021)
         return (
           <>
             <TableBodyCell>{salary}</TableBodyCell>

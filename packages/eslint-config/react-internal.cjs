@@ -30,6 +30,9 @@ module.exports = {
       },
     },
   },
+  rules: {
+    "react/require-default-props": "off",
+  },
   ignorePatterns: [
     // Ignore dotfiles
     ".*.js",
@@ -39,5 +42,11 @@ module.exports = {
   overrides: [
     // Force ESLint to detect .tsx files
     { files: ["*.?(m|c)js?(x)", "*.ts?(x)"] },
+    {
+      files: ["**/__tests__/**/*"],
+      rules: {
+        "import/no-extraneous-dependencies": "off",
+      },
+    },
   ],
 };

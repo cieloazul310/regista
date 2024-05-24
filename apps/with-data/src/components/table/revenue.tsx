@@ -54,14 +54,14 @@ function createRevenueRow() {
         <TableBodyHeadCell scope="row">{rank}</TableBodyHeadCell>
       </>
     );
-    const otherRevs = (year: number) => {
-      if (year <= 2010)
+    const otherRevs = (inputYear: number) => {
+      if (inputYear <= 2010)
         return (
           <TableBodyCell align="center" colSpan={4}>
             {other_revs}
           </TableBodyCell>
         );
-      if (year <= 2015)
+      if (inputYear <= 2015)
         return (
           <>
             <TableBodyCell align="center">{academy_rev}</TableBodyCell>
@@ -70,7 +70,7 @@ function createRevenueRow() {
             </TableBodyCell>
           </>
         );
-      if (year <= 2021)
+      if (inputYear <= 2021)
         return (
           <>
             <TableBodyCell align="center">{academy_rev}</TableBodyCell>
