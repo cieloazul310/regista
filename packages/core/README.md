@@ -41,6 +41,10 @@ You can change the location of stored content and data definitions as you like.
 npm install @cieloazul310/regista
 ```
 
+```sh
+npm install --save-dev @mdx-js/mdx
+```
+
 ### 2. Set up
 
 ```tsx

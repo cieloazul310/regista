@@ -6,3 +6,4 @@ export { default as Image } from "./image";
 export { default as Link } from "./link";
 export { default as Paragraph } from "./paragraph";
 export { default as Pre } from "./pre";
+export { default as createTables } from "./table";

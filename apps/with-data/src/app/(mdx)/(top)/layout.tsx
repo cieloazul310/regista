@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import { PageHeader } from "@/components";
+import PageHeader from "@/components/layout/page-header";
 
 export default function MDXPageLayout({ children }: PropsWithChildren) {
   return (

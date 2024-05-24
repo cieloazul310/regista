@@ -6,6 +6,9 @@ import {
   type DataFormat,
 } from "@cieloazul310/regista-utils";
 
+/**
+ * https://cieloazul310.github.io/regista/api/defineDataFromFile
+ */
 export default function defineDataFromFile<T extends ZodType>({
   filePath,
   schema,

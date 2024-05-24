@@ -3,7 +3,8 @@
 import { useState, useEffect, useMemo } from "react";
 import { useTheme } from "next-themes";
 import { MdSunny, MdOutlineNightlight, MdComputer } from "react-icons/md";
-import { IconButton, Tooltip, type IconButtonProps } from "@/components/ui";
+import { IconButton, type IconButtonProps } from "../ui/icon-button";
+import * as Tooltip from "../ui/tooltip";
 
 /**
  * reference:

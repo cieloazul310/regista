@@ -1,5 +1,5 @@
 import { article } from "styled-system/patterns";
-import { Heading } from "../ui";
+import { Heading } from "../ui/heading";
 
 type HeadingTag = `h${1 | 2 | 3 | 4 | 5}`;
 

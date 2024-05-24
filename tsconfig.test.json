@@ -1,0 +1,4 @@
+{
+  "extends": "@repo/typescript-config/nextjs.json",
+  "include": ["vitest.workspace.ts", "**/__test__/**/*.test.ts"]
+}

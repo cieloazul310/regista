@@ -1,7 +1,7 @@
 import type { PropsWithChildren } from "react";
 import type { Metadata } from "next";
-import { Footer } from "@/components";
-import { ThemeProvider } from "@/providers";
+import Footer from "@/components/layout/footer";
+import ThemeProvider from "@/providers/theme-provider";
 import "./globals.css";
 
 export const metadata: Metadata = {

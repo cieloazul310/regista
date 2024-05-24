@@ -1,4 +1,4 @@
 {
   "extends": "@repo/typescript-config/base.json",
-  "include": ["jest.config.ts", ".eslintrc.cjs"]
+  "include": [".eslintrc.cjs", "vitest.workspace.ts"]
 }

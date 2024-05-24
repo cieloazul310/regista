@@ -1,9 +1,10 @@
 import NextLink from "next/link";
+import remarkGfm from "remark-gfm";
 import rehypeShiki from "@shikijs/rehype";
 import { css } from "styled-system/css";
 import { flex, vstack } from "styled-system/patterns";
-import { PageHeader } from "@/components";
-import { Text } from "@/components/ui";
+import PageHeader from "@/components/layout/page-header";
+import { Text } from "@/components/ui/text";
 import { useMDXComponents } from "@/mdx-components";
 import { post } from "@/content";
 
@@ -25,20 +26,18 @@ async function Page({ params }: { params: { slug: string[] } }) {
   const components = useMDXComponents();
   const mdx = await post.useMdx(slug, {
     components,
-    options: {
-      mdxOptions: {
-        rehypePlugins: [
-          [
-            // @ts-expect-error
-            rehypeShiki,
-            {
-              themes: {
-                light: "slack-dark",
-              },
+    mdxOptions: {
+      remarkPlugins: [remarkGfm],
+      rehypePlugins: [
+        [
+          rehypeShiki,
+          {
+            themes: {
+              light: "slack-dark",
             },
-          ],
+          },
         ],
-      },
+      ],
     },
   });
   if (!mdx) return null;

@@ -1,4 +1,5 @@
 import createMDX from "@next/mdx";
+import remarkGfm from "remark-gfm";
 import rehypeShiki from "@shikijs/rehype";
 
 const withMdx = createMDX({
@@ -6,6 +7,7 @@ const withMdx = createMDX({
     mdxRs: true,
   },
   options: {
+    remarkPlugins: [remarkGfm],
     rehypePlugins: [
       [
         rehypeShiki,

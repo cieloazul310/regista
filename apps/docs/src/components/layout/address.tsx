@@ -1,7 +1,7 @@
 import type { ComponentProps } from "react";
 import { FaGithub, FaNpm } from "react-icons/fa6";
 import { hstack } from "styled-system/patterns";
-import { IconButton } from "../ui";
+import { IconButton } from "../ui/icon-button";
 
 function AddressIcon({ children, href, ...props }: ComponentProps<"a">) {
   return (

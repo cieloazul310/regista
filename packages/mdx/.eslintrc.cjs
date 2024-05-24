@@ -7,4 +7,13 @@ module.exports = {
     project: "./tsconfig.lint.json",
     tsconfigRootDir: __dirname,
   },
+  ignorePatterns: ["module"],
+  overrides: [
+    {
+      files: ["vitest.config.ts", "vitest.setup.ts"],
+      rules: {
+        "import/no-extraneous-dependencies": "off",
+      },
+    },
+  ],
 };

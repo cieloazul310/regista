@@ -120,7 +120,7 @@ async function Example() {
 
 #### `get(key: "id" | keyof Data, value: unknown)`
 
-arguments: `"id" | keyof Data` (`string`), `unknown`
+arguments: `"id" | keyof Data` (`string`), `unknown`  
 returns: `Promise<Metadata<Data> | undefiend>`
 
 Returns data matching the key and value.

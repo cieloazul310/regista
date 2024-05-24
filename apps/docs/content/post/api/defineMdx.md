@@ -1,6 +1,7 @@
 ---
 title: defineMdx API
 date: 2024-04-01
+lastmod: 2024-05-23
 category: api
 index: 10
 ---
@@ -229,11 +230,9 @@ async function Page() {
 
   const item = await post.useMdx(slug, {
     components,
-    options: {
-      mdxOptions: {
-        remarkPlugins: [],
-        rehypePlugins: [],
-      },
+    mdxOptions: {
+      remarkPlugins: [],
+      rehypePlugins: [],
     },
   });
   if (!item) return null;

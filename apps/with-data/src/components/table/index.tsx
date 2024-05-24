@@ -4,11 +4,11 @@ import { css } from "styled-system/css";
 import { flex } from "styled-system/patterns";
 import type { TabsValueChangeDetails } from "@ark-ui/react";
 import type { FinancialSchema } from "@/content";
+import { useTableStore } from "@/providers/table-store-provider";
 import type { Tab, Mode } from "@/types";
 import { Table, THead, TBody } from "./table";
 import Tabs from "./tabs";
-import { useTableStore } from "@/providers";
-import { Tabs as ParkTabs } from "../../ui";
+import * as ParkTabs from "../ui/tabs";
 import row from "./row";
 
 type FinancialTableProps = {
@@ -25,7 +25,7 @@ const options: { id: Tab; label: string }[] = [
   { id: "expense", label: "営業費用" },
 ];
 
-export function FinancialTable({ items, mode }: FinancialTableProps) {
+function FinancialTable({ items, mode }: FinancialTableProps) {
   const { tab, setTab } = useTableStore((store) => store);
   const onValueChange = (details: TabsValueChangeDetails) => {
     setTab(details.value as Tab);
@@ -64,3 +64,4 @@ export function FinancialTable({ items, mode }: FinancialTableProps) {
     </section>
   );
 }
+export default FinancialTable;

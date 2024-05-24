@@ -2,7 +2,8 @@ import type { PropsWithChildren } from "react";
 import { css } from "styled-system/css";
 import { vstack } from "styled-system/patterns";
 import { Flex } from "styled-system/jsx";
-import { Header, Drawer } from "@/components";
+import Header from "@/components/layout/header";
+import Drawer from "@/components/layout/drawer";
 import { clubCollection } from "@/content";
 
 export default async function Layout({
