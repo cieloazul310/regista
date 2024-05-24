@@ -1,5 +1,15 @@
 # @repo/eslint-config
 
+## 1.0.0
+
+### Major Changes
+
+- f83ca73: Regista v1
+
+  - adapted to MDX v3
+  - require peer dependency `@mdx-js/mdx`
+  - remove `next-mdx-remote` dependency.
+
 ## 0.0.7
 
 ### Patch Changes
