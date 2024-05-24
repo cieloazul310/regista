@@ -4,7 +4,8 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "outputs": [".next/**", "!.next/cache/**", "lib/**", "module/**"]
+      "outputs": [".next/**", "!.next/cache/**", "lib/**", "module/**"],
+      "env": ["NODE_ENV"]
     },
     "lint": {
       "dependsOn": ["^lint"]

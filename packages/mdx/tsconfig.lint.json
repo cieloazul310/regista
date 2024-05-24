@@ -1,8 +1,8 @@
 {
-  "extends": "@repo/typescript-config/react-library.json",
+  "extends": "./tsconfig.json",
   "compilerOptions": {
     "outDir": "dist"
   },
-  "include": ["src", "turbo", "__tests__", ".eslintrc.cjs", "vitest.config.ts", "vitest.setup.ts"],
+  "include": ["src", "__tests__", ".eslintrc.cjs", "vitest.config.ts", "vitest.setup.ts"],
   "exclude": ["node_modules", "module"]
 }

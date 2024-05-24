@@ -4,6 +4,6 @@
   "extends": "./base.json",
   "compilerOptions": {
     "module": "ESNext",
-    "moduleResolution": "Node",
+    "moduleResolution": "Bundler",
   }
 }
