@@ -10,11 +10,11 @@ export default async function Layout({
   children,
   params,
 }: PropsWithChildren<{
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 }>) {
-  const { slug } = params;
+  const { slug } = await params;
   const item = await clubCollection.get("slug", slug);
   if (!item) return null;
 

@@ -8,12 +8,13 @@ export async function generateStaticParams() {
 }
 
 type PageProps = {
-  params: {
+  params: Promise<{
     slug: string;
-  };
+  }>;
 };
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata(props: PageProps) {
+  const params = await props.params;
   const { slug } = params;
   const item = await clubCollection.get("slug", slug);
   if (!item) return null;
@@ -24,7 +25,7 @@ export async function generateMetadata({ params }: PageProps) {
 }
 
 async function Page({ params }: PageProps) {
-  const { slug } = params;
+  const { slug } = await params;
   const item = await clubCollection.get("slug", slug);
   if (!item) return null;
   const allData = await financial.getAll();

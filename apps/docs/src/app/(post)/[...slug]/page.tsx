@@ -21,8 +21,8 @@ const neighborPlaceholderStyle = css({
   maxWidth: { base: "full", md: "50%" },
 });
 
-async function Page({ params }: { params: { slug: string[] } }) {
-  const { slug } = params;
+async function Page({ params }: { params: Promise<{ slug: string[] }> }) {
+  const { slug } = await params;
   const components = useMDXComponents();
   const mdx = await post.useMdx(slug, {
     components,

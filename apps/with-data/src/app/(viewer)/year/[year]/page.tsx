@@ -8,12 +8,13 @@ export async function generateStaticParams() {
 }
 
 type PageProps = {
-  params: {
+  params: Promise<{
     year: string;
-  };
+  }>;
 };
 
-export async function generateMetadata({ params }: PageProps) {
+export async function generateMetadata(props: PageProps) {
+  const params = await props.params;
   const { year } = params;
   const item = await yearCollection.get("year", parseInt(year, 10));
   if (!item) return null;
@@ -23,7 +24,8 @@ export async function generateMetadata({ params }: PageProps) {
   } satisfies Metadata;
 }
 
-async function Page({ params }: PageProps) {
+async function Page(props: PageProps) {
+  const params = await props.params;
   const { year } = params;
   const item = await yearCollection.get("year", parseInt(year, 10));
   if (!item) return null;

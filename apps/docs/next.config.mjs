@@ -3,9 +3,6 @@ import remarkGfm from "remark-gfm";
 import rehypeShiki from "@shikijs/rehype";
 
 const withMdx = createMDX({
-  experimental: {
-    mdxRs: true,
-  },
   options: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [
@@ -21,7 +18,9 @@ const withMdx = createMDX({
   },
 });
 
-/** @type {import('next').NextConfig} */
+/**
+ * @type {import("next").NextConfig}
+ */
 const nextConfig = {
   output: "export",
   basePath: "/regista",
