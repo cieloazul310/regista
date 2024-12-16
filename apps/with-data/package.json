@@ -24,7 +24,6 @@
   "devDependencies": {
     "@mdx-js/loader": "^3.0.1",
     "@mdx-js/react": "^3.0.1",
-    "@next/eslint-plugin-next": "^14.2.3",
     "@next/mdx": "^15.0.0",
     "@pandacss/dev": "^0.39.1",
     "@park-ui/panda-preset": "^0.37.1",
