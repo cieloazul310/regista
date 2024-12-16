@@ -28,6 +28,7 @@
     "@repo/typescript-config": "*",
     "@testing-library/jest-dom": "^6.4.5",
     "@testing-library/react": "^15.0.7",
+    "@types/node": "^22.10.2",
     "@vitejs/plugin-react": "^4.3.0",
     "concurrently": "^8.2.2",
     "jsdom": "^24.0.0",
@@ -37,7 +38,7 @@
     "vitest": "^1.6.0"
   },
   "lint-staged": {
-    "*/**/*.{js,cjs,mjs,jsx,ts,tsx}": [
+    "./*.{js,cjs,mjs,ts}": [
       "eslint --fix",
       "prettier --parser typescript --write"
     ]

@@ -14,7 +14,7 @@
     }
   },
   "include": [
-    ".eslintrc.cjs",
+    "eslint.config.mjs",
     "next-env.d.ts",
     "next.config.mjs",
     "panda.config.ts",
