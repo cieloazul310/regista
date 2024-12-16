@@ -1,13 +1,8 @@
 import NextLink from "next/link";
-import {
-  TreeView as ArkTreeView,
-  type TreeViewRootProps,
-} from "@ark-ui/react/tree-view";
 import { forwardRef } from "react";
-import { css, cx } from "styled-system/css";
-import { splitCssProps } from "styled-system/jsx";
-import { treeView } from "styled-system/recipes";
+import { css } from "styled-system/css";
 import type { Assign, JsxStyleProps } from "styled-system/types";
+import * as StyledTreeView from "../../ui/styled/tree-view";
 
 function ChevronRightIcon() {
   return (
@@ -25,83 +20,68 @@ function ChevronRightIcon() {
   );
 }
 
-interface Child {
+export type TreeViewProps = Assign<JsxStyleProps, StyledTreeView.RootProps>;
+
+export interface TreeViewNode {
   id: string;
   name: string;
-  children?: Child[];
+  children?: TreeViewNode[];
 }
 
-export interface TreeViewData {
-  label: string;
-  children: Child[];
-}
-
-export interface TreeViewProps
-  extends Assign<JsxStyleProps, TreeViewRootProps> {
-  data: TreeViewData;
-}
-
-export const TreeView = forwardRef<HTMLDivElement, TreeViewProps>(
+export const TreeView = forwardRef<HTMLDivElement, StyledTreeView.RootProps>(
   (props, ref) => {
-    const [cssProps, localProps] = splitCssProps(props);
-    const { data, className, ...rootProps } = localProps;
-    const styles = treeView();
-
-    const renderChild = (child: Child) => {
-      if (!child.children) {
-        return (
-          <ArkTreeView.Item
-            key={child.id}
-            id={child.id}
-            className={cx(styles.item, css({ display: "block" }))}
-            asChild
-          >
-            <NextLink href={child.id}>
-              <ArkTreeView.ItemText className={styles.itemText}>
-                {child.name}
-              </ArkTreeView.ItemText>
-            </NextLink>
-          </ArkTreeView.Item>
-        );
-      }
-      return (
-        <ArkTreeView.Branch
-          key={child.id}
-          id={child.id}
-          className={styles.branch}
-        >
-          <ArkTreeView.BranchControl className={styles.branchControl}>
-            {child.children && (
-              <ArkTreeView.BranchIndicator className={styles.branchIndicator}>
-                <ChevronRightIcon />
-              </ArkTreeView.BranchIndicator>
-            )}
-            <ArkTreeView.BranchText
-              className={cx(styles.branchText, css({ cursor: "pointer" }))}
-            >
-              {child.name}
-            </ArkTreeView.BranchText>
-          </ArkTreeView.BranchControl>
-          <ArkTreeView.BranchContent className={styles.branchContent}>
-            {child.children?.map((nestedChild) => renderChild(nestedChild))}
-          </ArkTreeView.BranchContent>
-        </ArkTreeView.Branch>
-      );
-    };
-
     return (
-      <ArkTreeView.Root
-        ref={ref}
-        aria-label={data.label}
-        className={cx(styles.root, css(cssProps), className)}
-        {...rootProps}
-      >
-        <ArkTreeView.Tree className={styles.tree}>
-          {data.children.map(renderChild)}
-        </ArkTreeView.Tree>
-      </ArkTreeView.Root>
+      <StyledTreeView.Root ref={ref} {...props}>
+        <StyledTreeView.Tree>
+          {/* @ts-expect-error hoge hoge hoge */}
+          {props.collection.rootNode.children.map((node, index) => (
+            <TreeNode key={node.id} node={node} indexPath={[index]} />
+          ))}
+        </StyledTreeView.Tree>
+      </StyledTreeView.Root>
     );
   },
 );
 
-TreeView.displayName = "TreeView";
+TreeView.displayName = "TreeViewLink";
+
+const TreeNode = (props: StyledTreeView.NodeProviderProps) => {
+  const { node, indexPath } = props;
+  return (
+    <StyledTreeView.NodeProvider
+      key={node.id}
+      node={node}
+      indexPath={indexPath}
+    >
+      {node.children ? (
+        <StyledTreeView.Branch>
+          <StyledTreeView.BranchControl>
+            <StyledTreeView.BranchText className={css({ cursor: "pointer" })}>
+              {node.name}
+            </StyledTreeView.BranchText>
+            <StyledTreeView.BranchIndicator>
+              <ChevronRightIcon />
+            </StyledTreeView.BranchIndicator>
+          </StyledTreeView.BranchControl>
+          <StyledTreeView.BranchContent>
+            <StyledTreeView.BranchIndentGuide />
+            {/* @ts-expect-error hoge hoge hoge */}
+            {node.children.map((child, index) => (
+              <TreeNode
+                key={child.id}
+                node={child}
+                indexPath={[...indexPath, index]}
+              />
+            ))}
+          </StyledTreeView.BranchContent>
+        </StyledTreeView.Branch>
+      ) : (
+        <StyledTreeView.Item className={css({ display: "block" })} asChild>
+          <NextLink href={node.id}>
+            <StyledTreeView.ItemText>{node.name}</StyledTreeView.ItemText>
+          </NextLink>
+        </StyledTreeView.Item>
+      )}
+    </StyledTreeView.NodeProvider>
+  );
+};

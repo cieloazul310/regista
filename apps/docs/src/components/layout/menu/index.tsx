@@ -1,12 +1,13 @@
 import { post } from "@/content";
 import MenuClient from "./menu-client";
-import type { TreeViewProps, TreeViewData } from "./tree-view";
+import type { TreeViewProps } from "./tree-view";
 
-async function Menu(props: Omit<TreeViewProps, "data">) {
+async function Menu(props: Omit<TreeViewProps, "collection">) {
   const allPost = await post.getAll();
 
-  const data: TreeViewData = {
-    label: "Menu",
+  const collection = {
+    id: "menu",
+    name: "Menu",
     children: [
       {
         id: "/",
@@ -35,7 +36,7 @@ async function Menu(props: Omit<TreeViewProps, "data">) {
     ],
   };
 
-  return <MenuClient data={data} {...props} />;
+  return <MenuClient {...props} collection={collection} />;
 }
 
 export default Menu;
