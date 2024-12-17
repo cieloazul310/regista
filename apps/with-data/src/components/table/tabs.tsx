@@ -1,5 +1,5 @@
 import type { PropsWithChildren } from "react";
-import * as ParkTabs from "../ui/tabs";
+import { Tabs as ParkTabs } from "../ui/tabs";
 
 export default function Tabs({
   children,

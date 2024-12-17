@@ -30,7 +30,7 @@ function createRow<T extends keyof FinancialSchema>({
     data: Pick<FinancialSchema, "name" | "year" | "category" | "rank" | T>,
     mode: Mode,
   ) => (
-    <TBodyRow key={data.year.toString()}>
+    <TBodyRow key={`${data.name}${data.year.toString()}`}>
       <TableBodyHeadCell scope="row">
         {mode === "club" ? data.year : data.name}
       </TableBodyHeadCell>

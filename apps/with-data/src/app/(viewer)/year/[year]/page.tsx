@@ -4,7 +4,10 @@ import { financial, yearCollection } from "@/content";
 
 export async function generateStaticParams() {
   const allYear = await yearCollection.getAll();
-  return allYear.map(({ year }) => year.toString());
+  return allYear.map(({ year, ...rest }) => ({
+    ...rest,
+    year: year.toString(),
+  }));
 }
 
 type PageProps = {

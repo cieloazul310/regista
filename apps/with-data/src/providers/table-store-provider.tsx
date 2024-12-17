@@ -17,10 +17,12 @@ export const TableStoreContext = createContext<StoreApi<TableStore> | null>(
 export type TableStoreProviderProps = PropsWithChildren;
 
 export function TableStoreProvider({ children }: TableStoreProviderProps) {
-  const storeRef = useRef<StoreApi<TableStore>>();
+  const storeRef = useRef<StoreApi<TableStore>>(createTableStore());
+  /*
   if (!storeRef.current) {
     storeRef.current = createTableStore();
   }
+  */
 
   return (
     <TableStoreContext.Provider value={storeRef.current}>

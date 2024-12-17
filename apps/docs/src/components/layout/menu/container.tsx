@@ -1,25 +1,10 @@
 import NextLink from "next/link";
 import { useCollapsible } from "@ark-ui/react/collapsible";
+import { LuChevronRight } from "react-icons/lu";
 import { cva } from "styled-system/css";
 import { VStack } from "styled-system/jsx";
 import { Collapsible } from "../../ui/collapsible";
 import { Button, type ButtonProps } from "../../ui/button";
-
-function ChevronRightIcon() {
-  return (
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-      <title>Chevron Right Icon</title>
-      <path
-        fill="none"
-        stroke="currentColor"
-        strokeLinecap="round"
-        strokeLinejoin="round"
-        strokeWidth="2"
-        d="m9 18l6-6l-6-6"
-      />
-    </svg>
-  );
-}
 
 const indicatorRecipe = cva({
   base: {
@@ -43,7 +28,7 @@ const indicatorRecipe = cva({
 function CollapsibleIndicator({ open }: { open: boolean }) {
   return (
     <span className={indicatorRecipe({ open })}>
-      <ChevronRightIcon />
+      <LuChevronRight />
     </span>
   );
 }
