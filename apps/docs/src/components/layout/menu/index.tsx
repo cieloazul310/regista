@@ -1,42 +1,38 @@
 import { post } from "@/content";
 import MenuClient from "./menu-client";
-import type { TreeViewProps } from "./tree-view";
+import type { MenuGroupNode } from "./container";
 
-async function Menu(props: Omit<TreeViewProps, "collection">) {
+async function Menu() {
   const allPost = await post.getAll();
 
-  const collection = {
-    id: "menu",
-    name: "Menu",
-    children: [
-      {
-        id: "/",
-        name: "Top",
-      },
-      {
-        id: "/guide",
-        name: "Guide",
-        children: allPost
-          .filter(({ frontmatter }) => frontmatter.category === "guide")
-          .map(({ href, frontmatter }) => ({
-            id: href,
-            name: frontmatter.title,
-          })),
-      },
-      {
-        id: "/api",
-        name: "API",
-        children: allPost
-          .filter(({ frontmatter }) => frontmatter.category === "api")
-          .map(({ href, frontmatter }) => ({
-            id: href,
-            name: frontmatter.title,
-          })),
-      },
-    ],
-  };
+  const nodes = [
+    {
+      id: "/",
+      name: "Top",
+    },
+    {
+      id: "/guide",
+      name: "Guide",
+      children: allPost
+        .filter(({ frontmatter }) => frontmatter.category === "guide")
+        .map(({ href, frontmatter }) => ({
+          id: href,
+          name: frontmatter.title,
+        })),
+    },
+    {
+      id: "/api",
+      name: "API",
+      children: allPost
+        .filter(({ frontmatter }) => frontmatter.category === "api")
+        .map(({ href, frontmatter }) => ({
+          id: href,
+          name: frontmatter.title,
+        })),
+    },
+  ] satisfies MenuGroupNode[];
 
-  return <MenuClient {...props} collection={collection} />;
+  return <MenuClient nodes={nodes} />;
 }
 
 export default Menu;

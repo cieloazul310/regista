@@ -1,41 +1,37 @@
 import { clubCollection, yearCollection } from "@/content";
 import MenuClient from "./menu-client";
-import type { TreeViewProps } from "./tree-view";
+import type { MenuGroupNode } from "./container";
 
-async function Menu(props: Omit<TreeViewProps, "collection">) {
+async function Menu() {
   const allClub = await clubCollection.getAll();
   const allYear = await yearCollection.getAll();
 
-  const collection = {
-    id: "root",
-    name: "Root",
-    children: [
-      {
-        id: "/",
-        name: "Top",
-      },
-      {
-        id: "/club",
-        name: "Club",
-        children: allClub.map(({ slug, name }) => ({
-          id: `/club/${slug}`,
-          name,
+  const nodes = [
+    {
+      id: "/",
+      name: "Top",
+    },
+    {
+      id: "/club",
+      name: "Club",
+      children: allClub.map(({ slug, name }) => ({
+        id: `/club/${slug}`,
+        name,
+      })),
+    },
+    {
+      id: "/year",
+      name: "Year",
+      children: allYear
+        .sort((a, b) => a.year - b.year)
+        .map(({ year }) => ({
+          id: `/year/${year}`,
+          name: `${year}年`,
         })),
-      },
-      {
-        id: "/year",
-        name: "Year",
-        children: allYear
-          .sort((a, b) => a.year - b.year)
-          .map(({ year }) => ({
-            id: `/year/${year}`,
-            name: `${year}年`,
-          })),
-      },
-    ],
-  };
+    },
+  ] satisfies MenuGroupNode[];
 
-  return <MenuClient {...props} collection={collection} />;
+  return <MenuClient nodes={nodes} />;
 }
 
 export default Menu;
