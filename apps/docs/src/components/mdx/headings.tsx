@@ -3,7 +3,10 @@ import { Heading } from "../ui/heading";
 
 type HeadingTag = `h${1 | 2 | 3 | 4 | 5}`;
 
-export default function createHeadings(): Record<HeadingTag, React.FC<any>> {
+export default function createHeadings(): Record<
+  HeadingTag,
+  React.FC<Record<string, unknown>>
+> {
   return {
     h1: (props) => (
       <Heading

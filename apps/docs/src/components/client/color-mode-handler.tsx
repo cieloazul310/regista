@@ -37,6 +37,7 @@ function ColorModeHandler({ className, ...props }: IconButtonProps) {
         <IconButton
           className={className}
           variant="ghost"
+          // @ts-expect-error hoge
           onClick={onClick}
           aria-label={`Change to ${next} mode.`}
           {...props}
