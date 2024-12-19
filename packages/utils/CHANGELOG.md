@@ -1,5 +1,11 @@
 # @cieloazul310/regista
 
+## 1.1.0
+
+### Minor Changes
+
+- a25778a: React 19 compatibility
+
 ## 1.0.0
 
 ### Major Changes
