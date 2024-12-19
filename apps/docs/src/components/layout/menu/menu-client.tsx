@@ -1,15 +1,11 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { TreeView, type TreeViewProps } from "./tree-view";
+import MenuContainer, { type MenuContainerProps } from "./container";
 
-function MenuClient(props: Omit<TreeViewProps, "selectedIds" | "expandedIds">) {
+function MenuClient({ nodes }: Pick<MenuContainerProps, "nodes">) {
   const pathname = usePathname();
-  const parent = pathname.replace(/\/[\w,-]*$/, "");
-
-  return (
-    <TreeView expandedIds={[parent]} selectedIds={[pathname]} {...props} />
-  );
+  return <MenuContainer nodes={nodes} current={pathname} />;
 }
 
 export default MenuClient;

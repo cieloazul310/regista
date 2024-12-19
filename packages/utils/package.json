@@ -45,21 +45,24 @@
     "dev": "concurrently \"dev:cjs\" \"dev:mjs\"",
     "dev:cjs": "npm run tsc:cjs -- --watch",
     "dev:mjs": "npm run tsc:mjs -- --watch",
-    "lint": "eslint . --max-warnings 0"
+    "lint": "eslint src __tests__ --fix"
   },
   "dependencies": {
-    "yaml": "^2.4.2"
+    "yaml": "^2.6.1"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "@types/eslint": "^8.56.10",
-    "@types/node": "^20.12.12",
-    "eslint": "^8.57.0",
-    "typescript": "^5.4.5",
-    "zod": "^3.22.4"
+    "eslint": "^9.17.0",
+    "zod": "^3.24.1"
   },
   "peerDependencies": {
     "zod": "^3.0.0"
+  },
+  "lint-staged": {
+    "**/*.{js,cjs,mjs,ts}": [
+      "eslint --fix",
+      "prettier --parser typescript --write"
+    ]
   }
 }

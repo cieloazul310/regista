@@ -3,6 +3,6 @@
   "compilerOptions": {
     "outDir": "dist"
   },
-  "include": ["src", "__tests__", ".eslintrc.cjs", "vitest.config.ts", "vitest.setup.ts"],
+  "include": ["src", "__tests__", "eslint.config.mjs", "vitest.config.ts", "vitest.setup.ts"],
   "exclude": ["node_modules", "module"]
 }

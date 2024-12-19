@@ -5,10 +5,13 @@ import { Flex } from "styled-system/jsx";
 import Header from "@/components/layout/header";
 import Drawer from "@/components/layout/drawer";
 
-export default function Layout({
-  children,
-  params,
-}: PropsWithChildren<{ params: { year: string } }>) {
+export default async function Layout(
+  props: PropsWithChildren<{ params: { year: string } }>,
+) {
+  const params = await props.params;
+
+  const { children } = props;
+
   return (
     <>
       <Header title={`${params.year}年Jクラブ経営情報`} />

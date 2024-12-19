@@ -21,8 +21,9 @@ const neighborPlaceholderStyle = css({
   maxWidth: { base: "full", md: "50%" },
 });
 
-async function Page({ params }: { params: { slug: string[] } }) {
-  const { slug } = params;
+async function Page({ params }: { params: Promise<{ slug: string[] }> }) {
+  const { slug } = await params;
+  /* eslint-disable-next-line react-hooks/rules-of-hooks */
   const components = useMDXComponents();
   const mdx = await post.useMdx(slug, {
     components,
@@ -63,7 +64,11 @@ async function Page({ params }: { params: { slug: string[] } }) {
           <div className={neighborStyle}>
             <Text>Previous</Text>
             <NextLink href={older.href}>
-              <Text fontWeight="bold" fontSize="lg">
+              <Text
+                fontWeight="bold"
+                fontSize="lg"
+                _hover={{ textDecoration: "underline" }}
+              >
                 {older.frontmatter.title}
               </Text>
             </NextLink>
@@ -75,7 +80,11 @@ async function Page({ params }: { params: { slug: string[] } }) {
           <div className={neighborStyle}>
             <Text>Next</Text>
             <NextLink href={newer.href}>
-              <Text fontWeight="bold" fontSize="lg">
+              <Text
+                fontWeight="bold"
+                fontSize="lg"
+                _hover={{ textDecoration: "underline" }}
+              >
                 {newer.frontmatter.title}
               </Text>
             </NextLink>

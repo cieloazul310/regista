@@ -3,7 +3,7 @@ import { css } from "styled-system/css";
 import ColorModeHandler from "../client/color-mode-handler";
 import { Button } from "../ui/button";
 import { IconButton } from "../ui/icon-button";
-import * as ParkDrawer from "../ui/drawer";
+import { Drawer as ParkDrawer } from "../ui/drawer";
 import Menu from "./menu";
 
 function Drawer(props: ParkDrawer.RootProps) {

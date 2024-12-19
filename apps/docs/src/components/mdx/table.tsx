@@ -1,9 +1,12 @@
 import type { ComponentPropsWithoutRef } from "react";
-import * as ParkTable from "../ui/table";
+import { Table as ParkTable } from "../ui/table";
 
 type TableTags = "table" | "thead" | "tbody" | "tr" | "th" | "td";
 
-export default function createTables(): Record<TableTags, React.FC<any>> {
+export default function createTables(): Record<
+  TableTags,
+  React.FC<Record<string, unknown>>
+> {
   return {
     table: (props: ComponentPropsWithoutRef<"table">) => (
       <ParkTable.Root variant="outline" {...props} />

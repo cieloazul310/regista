@@ -122,7 +122,7 @@ function createExpenseRow() {
     };
 
     return (
-      <TBodyRow key={year.toString()}>
+      <TBodyRow key={`${name}${year.toString()}`}>
         {rowHead}
         <TableBodyCell emphasized bgEmphasized>
           {expense}

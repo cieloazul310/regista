@@ -18,21 +18,25 @@ const defaultFrontmatterSchema = z.object({
   draft: z.boolean(),
 });
 
+/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
 const defaultFrontmatterSchemaInput = defaultFrontmatterSchema.partial({
   lastmod: true,
   draft: true,
 });
 
 export type Frontmatter<
-  T extends Record<string, any> = Record<string, unknown>,
+  T extends Record<string, string | number | unknown> = Record<string, unknown>,
 > = T & z.infer<typeof defaultFrontmatterSchema>;
 
 export type FrontmatterInput<
-  T extends Record<string, any> = Record<string, unknown>,
+  T extends Record<string, string | number | unknown> = Record<string, unknown>,
 > = T & z.infer<typeof defaultFrontmatterSchemaInput>;
 
 export type MdxMetadata<
-  TFrontmatter extends Record<string, any> = Record<string, unknown>,
+  TFrontmatter extends Record<string, string | number | unknown> = Record<
+    string,
+    unknown
+  >,
 > = {
   frontmatter: TFrontmatter;
   absolutePath: string;
@@ -48,7 +52,9 @@ export type UseMDXOptions = Partial<{
   >;
 }>;
 
-function complementFrontmatter<T extends Record<string, any>>({
+function complementFrontmatter<
+  T extends Record<string, string | number | unknown>,
+>({
   title,
   date,
   lastmod,
@@ -180,7 +186,6 @@ export default function defineMdx<Z extends ZodRawShape>({
     const code = String(
       await compile(vfile, { outputFormat: "function-body", ...mdxOptions }),
     );
-    // @ts-expect-error
     const { default: MDXContent } = await run(code, {
       ...runtime,
       baseUrl: import.meta.url,

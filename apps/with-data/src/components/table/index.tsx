@@ -8,7 +8,7 @@ import { useTableStore } from "@/providers/table-store-provider";
 import type { Tab, Mode } from "@/types";
 import { Table, THead, TBody } from "./table";
 import Tabs from "./tabs";
-import * as ParkTabs from "../ui/tabs";
+import { Tabs as ParkTabs } from "../ui/tabs";
 import row from "./row";
 
 type FinancialTableProps = {
