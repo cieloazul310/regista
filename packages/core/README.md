@@ -76,7 +76,7 @@ export async function generateStaticParams() {
   return allPosts;
 }
 
-async function Page({ params }: Promise<{ params: { slug: string[] } }>) {
+async function Page({ params }: { params: Promise<{ slug: string[] }> }) {
   const { slug } = await params;
   const item = await post.useMdx(slug);
   if (!item) return null;
