@@ -1,4 +1,4 @@
 {
   "extends": "@repo/typescript-config/base.json",
-  "include": ["eslint.config.mjs", "vitest.workspace.ts"]
+  "include": ["eslint.config.mjs", "vitest.config.ts"]
 }

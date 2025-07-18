@@ -5,13 +5,19 @@ import { compile, run, type CompileOptions } from "@mdx-js/mdx";
 import type { MDXComponents } from "mdx/types";
 import { VFile } from "vfile";
 import { matter } from "vfile-matter";
-import { z, type ZodRawShape, type ZodObject } from "zod";
+import {
+  z,
+  type ZodRawShape,
+  type ZodObject,
+  type output,
+  type infer as ZodInfer,
+} from "zod";
 import {
   fileNameToSlug,
   dataSchemaVaridator,
 } from "@cieloazul310/regista-utils";
 
-const defaultFrontmatterSchema = z.object({
+const defaultFrontmatterSchema = z.looseObject({
   title: z.string(),
   date: z.coerce.date(),
   lastmod: z.coerce.date(),
@@ -26,11 +32,11 @@ const defaultFrontmatterSchemaInput = defaultFrontmatterSchema.partial({
 
 export type Frontmatter<
   T extends Record<string, string | number | unknown> = Record<string, unknown>,
-> = T & z.infer<typeof defaultFrontmatterSchema>;
+> = T & ZodInfer<typeof defaultFrontmatterSchema>;
 
 export type FrontmatterInput<
   T extends Record<string, string | number | unknown> = Record<string, unknown>,
-> = T & z.infer<typeof defaultFrontmatterSchemaInput>;
+> = T & ZodInfer<typeof defaultFrontmatterSchemaInput>;
 
 export type MdxMetadata<
   TFrontmatter extends Record<string, string | number | unknown> = Record<
@@ -85,14 +91,12 @@ export default function defineMdx<Z extends ZodRawShape>({
   schema: Z;
   extensions?: string[];
   sortFunction?: (
-    a: MdxMetadata<Frontmatter<z.TypeOf<ZodObject<Z>>>>,
-    b: MdxMetadata<Frontmatter<z.TypeOf<ZodObject<Z>>>>,
+    a: MdxMetadata<Frontmatter<output<ZodObject<Z>>>>,
+    b: MdxMetadata<Frontmatter<output<ZodObject<Z>>>>,
   ) => number;
 }) {
-  type RestFrontmatter = z.TypeOf<ZodObject<Z>>;
-  const frontmatterSchema = defaultFrontmatterSchema
-    .extend(schema)
-    .passthrough();
+  type RestFrontmatter = output<ZodObject<Z>>;
+  const frontmatterSchema = defaultFrontmatterSchema.extend(schema);
   const metadataSchema = z.object({
     frontmatter: frontmatterSchema,
     absolutePath: z.string(),

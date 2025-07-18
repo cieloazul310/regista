@@ -1,5 +1,5 @@
 import { readFile } from "fs/promises";
-import { z, type ZodType } from "zod";
+import type { ZodType, output } from "zod";
 import {
   schemaVaridator,
   dataFormatter,
@@ -21,7 +21,7 @@ export default function defineDataFromFile<T extends ZodType>({
   const { parser } = dataFormatter(format);
   const varidator = schemaVaridator(schema);
 
-  async function getAll(): Promise<z.TypeOf<T>[]> {
+  async function getAll(): Promise<output<T>[]> {
     const file = await readFile(filePath, "utf8");
     const raw = parser(file);
     if (!Array.isArray(raw)) throw new Error("Data must be array");
@@ -31,9 +31,9 @@ export default function defineDataFromFile<T extends ZodType>({
 
   /** @todo should be adapted to any data */
   async function get(
-    key: keyof z.TypeOf<T>,
+    key: keyof output<T>,
     value: unknown,
-  ): Promise<z.TypeOf<T> | undefined> {
+  ): Promise<output<T> | undefined> {
     const data = await getAll();
     return data.find((datum) => datum?.[key] === value);
   }

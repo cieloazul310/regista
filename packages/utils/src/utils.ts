@@ -1,9 +1,14 @@
-import { z, type ZodType } from "zod";
+import {
+  enum as zodEnum,
+  type ZodType,
+  type output,
+  type infer as ZodInfer,
+} from "zod";
 import * as yaml from "yaml";
 
 export type DataMetadata<TData extends ZodType> = {
   id: string;
-  data: TData;
+  data: output<TData>;
   absolutePath: string;
 };
 
@@ -19,7 +24,7 @@ export function fileNameToSlug(fileName: string) {
 }
 
 export function schemaVaridator<T extends ZodType>(schema: T) {
-  return (data: unknown): data is z.TypeOf<T> => {
+  return (data: unknown): data is output<T> => {
     const result = schema.safeParse(data);
     if (!result.success) {
       console.error(result.error.message);
@@ -32,7 +37,7 @@ export function dataSchemaVaridator<T extends ZodType>(schema: T) {
   return (input: {
     data: unknown;
     filename: string;
-  }): input is { data: z.TypeOf<T>; filename: string } => {
+  }): input is { data: output<T>; filename: string } => {
     const { data, filename } = input;
     const result = schema.safeParse(data);
     if (!result.success) {
@@ -42,8 +47,8 @@ export function dataSchemaVaridator<T extends ZodType>(schema: T) {
   };
 }
 
-export const dataFormat = z.enum(["yaml", "json", "raw"]);
-export type DataFormat = z.infer<typeof dataFormat>;
+export const dataFormat = zodEnum(["yaml", "json", "raw"]);
+export type DataFormat = ZodInfer<typeof dataFormat>;
 
 export function dataformatToExts(format: DataFormat) {
   if (format === "yaml") return ["yml", "yaml"];
