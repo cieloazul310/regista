@@ -1,7 +1,7 @@
 {
   "name": "@cieloazul310/regista-utils",
   "description": "Simple and type-safe Markdown/MDX content management tool for Next.js App Router",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "main": "lib/index.js",
   "module": "module/index.js",
   "types": "lib/index.d.ts",

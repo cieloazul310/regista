@@ -1,5 +1,17 @@
 # @cieloazul310/regista
 
+## 1.2.0
+
+### Minor Changes
+
+- 9feb174: upgrade zod from v3 to v4
+
+### Patch Changes
+
+- Updated dependencies [9feb174]
+  - @cieloazul310/regista-data@1.2.0
+  - @cieloazul310/regista-mdx@1.2.0
+
 ## 1.1.0
 
 ### Minor Changes
@@ -17,7 +29,6 @@
 ### Major Changes
 
 - f83ca73: Regista v1
-
   - adapted to MDX v3
   - require peer dependency `@mdx-js/mdx`
   - remove `next-mdx-remote` dependency.
