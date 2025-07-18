@@ -1,6 +1,6 @@
 import { readFile, readdir } from "fs/promises";
 import * as path from "path";
-import { z, type ZodType } from "zod";
+import type { ZodType, output } from "zod";
 import {
   dataSchemaVaridator,
   dataFormatter,
@@ -22,12 +22,11 @@ export default function defineData<T extends ZodType>({
   format?: DataFormat;
   extensions?: string[];
 }) {
-  type DataSchema = z.TypeOf<T>;
   const formatter = dataFormatter(format, extensions);
   const varidator = dataSchemaVaridator(schema);
   const re = new RegExp(`.(${formatter.extensions.join("|")})$`);
 
-  async function getAll(): Promise<DataMetadata<DataSchema>[]> {
+  async function getAll(): Promise<DataMetadata<T>[]> {
     const filesInDir = await readdir(contentPath, {
       recursive: true,
     });
@@ -52,9 +51,9 @@ export default function defineData<T extends ZodType>({
   }
 
   async function get(
-    key: "id" | keyof DataSchema,
+    key: "id" | keyof output<T>,
     value: unknown,
-  ): Promise<DataMetadata<DataSchema> | undefined> {
+  ): Promise<DataMetadata<T> | undefined> {
     const data = await getAll();
     if (key === "id") return data.find((datum) => datum.id === value);
 
