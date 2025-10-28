@@ -5,7 +5,7 @@
     "apps/*",
     "packages/*"
   ],
-  "packageManager": "npm@11.4.2",
+  "packageManager": "npm@11.6.2",
   "engines": {
     "node": ">=22"
   },
@@ -23,19 +23,19 @@
     "lint-staged": "lint-staged"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.29.5",
+    "@changesets/cli": "^2.29.7",
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "@testing-library/jest-dom": "^6.6.3",
+    "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.0",
-    "@types/node": "^24.0.14",
-    "@vitejs/plugin-react": "^4.7.0",
-    "concurrently": "^9.2.0",
-    "jsdom": "^26.1.0",
-    "lint-staged": "^16.1.2",
+    "@types/node": "^24.9.1",
+    "@vitejs/plugin-react": "^5.1.0",
+    "concurrently": "^9.2.1",
+    "jsdom": "^27.0.1",
+    "lint-staged": "^16.2.6",
     "prettier": "^3.6.2",
-    "turbo": "^2.5.5",
-    "vitest": "^3.2.4"
+    "turbo": "^2.5.8",
+    "vitest": "^4.0.4"
   },
   "lint-staged": {
     "./*.{js,cjs,mjs,ts}": [

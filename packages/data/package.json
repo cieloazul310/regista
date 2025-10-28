@@ -54,8 +54,8 @@
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "eslint": "^9.31.0",
-    "zod": "^4.0.0"
+    "eslint": "^9.38.0",
+    "zod": "^4.1.12"
   },
   "lint-staged": {
     "**/*.{js,cjs,mjs,ts}": [

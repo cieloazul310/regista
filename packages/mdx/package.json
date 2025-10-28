@@ -33,16 +33,16 @@
     "@cieloazul310/regista-utils": "^1.2.0",
     "vfile": "^6.0.3",
     "vfile-matter": "^5.0.1",
-    "zod": "^4.0.5"
+    "zod": "^4.1.12"
   },
   "devDependencies": {
-    "@mdx-js/mdx": "^3.1.0",
+    "@mdx-js/mdx": "^3.1.1",
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "@types/react": "^19.1.8",
-    "@vitejs/plugin-react": "^4.7.0",
-    "eslint": "^9.31.0",
-    "react": "^19.1.0"
+    "@types/react": "^19.2.2",
+    "@vitejs/plugin-react": "^5.1.0",
+    "eslint": "^9.38.0",
+    "react": "^19.2.0"
   },
   "peerDependencies": {
     "@mdx-js/mdx": "^3.0.0",
