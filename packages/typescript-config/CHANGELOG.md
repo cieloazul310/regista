@@ -1,5 +1,11 @@
 # @repo/typescript-config
 
+## 1.2.1
+
+### Patch Changes
+
+- 0513f9a: Update dependencies
+
 ## 1.2.0
 
 ### Minor Changes
