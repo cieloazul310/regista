@@ -1,5 +1,13 @@
 # docs
 
+## 1.2.1
+
+### Patch Changes
+
+- 0513f9a: Update dependencies
+- Updated dependencies [0513f9a]
+  - @cieloazul310/regista@1.2.1
+
 ## 1.2.0
 
 ### Minor Changes
