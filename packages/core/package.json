@@ -35,7 +35,7 @@
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "eslint": "^9.31.0"
+    "eslint": "^9.38.0"
   },
   "peerDependencies": {
     "@mdx-js/mdx": "^3.0.0",

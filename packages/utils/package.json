@@ -48,13 +48,13 @@
     "lint": "eslint src __tests__ --fix"
   },
   "dependencies": {
-    "yaml": "^2.8.0"
+    "yaml": "^2.8.1"
   },
   "devDependencies": {
     "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "eslint": "^9.31.0",
-    "zod": "^4.0.5"
+    "eslint": "^9.38.0",
+    "zod": "^4.1.12"
   },
   "peerDependencies": {
     "zod": "^3.0.0 || ^4.0.0"
