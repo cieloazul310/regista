@@ -15,7 +15,7 @@ jobs:
       published: ${{ steps.changesets.outputs.published }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Detect package manager
         id: detect-package-manager
@@ -36,9 +36,9 @@ jobs:
           fi
 
       - name: Setup Node
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v6
         with:
-          node-version: latest
+          node-version: "lts/*"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
           cache-dependency-path: ./package-lock.json
 
