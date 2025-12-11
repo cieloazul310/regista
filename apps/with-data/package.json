@@ -13,7 +13,7 @@
     "@ark-ui/react": "^5.26.2",
     "@cieloazul310/regista-data": "*",
     "@shikijs/rehype": "^3.14.0",
-    "next": "^16.0.0",
+    "next": "^16.0.9",
     "next-themes": "^0.4.6",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
