@@ -34,7 +34,7 @@
     "jsdom": "^27.0.1",
     "lint-staged": "^16.2.6",
     "prettier": "^3.6.2",
-    "turbo": "^2.5.8",
+    "turbo": "^2.9.16",
     "vitest": "^4.0.4"
   },
   "lint-staged": {
