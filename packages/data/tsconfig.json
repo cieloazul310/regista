@@ -1,8 +1,8 @@
 {
   "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
-    "outDir": "lib"
+    "types": ["node", "vitest/globals"]
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "lib", "module"]
+  "include": ["src", "tsdown.config.ts", "__tests__"],
+  "exclude": ["node_modules", "dist"]
 }

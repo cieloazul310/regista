@@ -1,5 +1,4 @@
 import { defineConfig } from "@pandacss/dev";
-import { createPreset } from "@park-ui/panda-preset";
 import { globalCss, patterns, semanticTokens, tokens } from "@/theme";
 
 export default defineConfig({
@@ -8,11 +7,13 @@ export default defineConfig({
 
   presets: [
     "@pandacss/preset-panda",
+    /*
     createPreset({
       accentColor: "gold",
       grayColor: "sand",
       borderRadius: "xl",
     }),
+    */
   ],
 
   conditions: {

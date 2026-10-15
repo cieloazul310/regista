@@ -1,8 +1,5 @@
 {
   "extends": "@repo/typescript-config/base.json",
-  "compilerOptions": {
-    "outDir": "lib"
-  },
-  "include": ["src"],
-  "exclude": ["node_modules", "lib", "module"]
+  "include": ["src", "tsdown.config.ts"],
+  "exclude": ["node_modules", "dist"]
 }

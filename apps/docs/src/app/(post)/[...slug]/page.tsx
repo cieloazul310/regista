@@ -23,7 +23,7 @@ const neighborPlaceholderStyle = css({
 
 async function Page({ params }: { params: Promise<{ slug: string[] }> }) {
   const { slug } = await params;
-  /* eslint-disable-next-line react-hooks/rules-of-hooks */
+  /* oxlint-disable-next-line react/rules-of-hooks */
   const components = useMDXComponents();
   const mdx = await post.useMdx(slug, {
     components,

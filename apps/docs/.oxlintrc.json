@@ -1,0 +1,16 @@
+{
+  "extends": ["../../.oxlintrc.json"],
+  "plugins": ["react", "jsx-a11y", "nextjs"],
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "categories": {
+    "suspicious": "error"
+  },
+  "rules": {
+    "react/react-in-jsx-scope": "off",
+    "typescript/no-empty-object-type": "warn",
+    "typescript/ban-ts-comment": "off"
+  }
+}
