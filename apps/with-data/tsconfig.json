@@ -7,18 +7,16 @@
       }
     ],
     "baseUrl": ".",
-    "rootDir": "../../",
     "paths": {
       "@/*": ["./src/*"],
       "styled-system/*": ["./styled-system/*"]
-    }
+    },
+    "ignoreDeprecations": "6.0"
   },
   "include": [
-    "eslint.config.mjs",
     "next-env.d.ts",
     "next.config.mjs",
     "panda.config.ts",
-    "postcss.config.cjs",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",

@@ -31,7 +31,7 @@ export default async function Layout(
               gap: "lg",
               alignItems: "stretch",
               flexGrow: 1,
-              bg: "bg.default",
+              bg: "gray.surface.bg",
               rounded: "l2",
               width: "full",
               mx: "auto",

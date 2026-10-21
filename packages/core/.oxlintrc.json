@@ -1,0 +1,9 @@
+{
+  "extends": ["../../.oxlintrc.json"],
+  "env": {
+    "node": true
+  },
+  "categories": {
+    "suspicious": "error"
+  }
+}

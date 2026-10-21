@@ -20,7 +20,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: PropsWithChildren) {
   return (
     <html lang="ja" suppressHydrationWarning>
-      <body>
+      <body className={css({ colorPalette: "gold" })}>
         <ThemeProvider>
           <Header />
           <div className={css({ maxWidth: "full" })}>
@@ -46,7 +46,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
                   overflowY: undefined,
                   px: "sm",
                   pt: "lg",
-                  bg: "bg.default",
+                  bg: "gray.surface.bg",
                   rounded: "l2",
                   md: {
                     width: "sidebar-width",
@@ -65,7 +65,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
                   gap: "lg",
                   alignItems: "stretch",
                   flexGrow: 1,
-                  bg: "bg.default",
+                  bg: "gray.surface.bg",
                   rounded: "l2",
                   width: "full",
                   maxWidth: "main-width",

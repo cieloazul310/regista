@@ -1,8 +1,0 @@
-{
-  "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "outDir": "dist"
-  },
-  "include": ["src", "__tests__", "eslint.config.mjs"],
-  "exclude": ["node_modules", "lib", "module"]
-}

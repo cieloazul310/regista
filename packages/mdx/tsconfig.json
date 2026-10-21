@@ -1,8 +1,15 @@
 {
-  "extends": "@repo/typescript-config/mjs.json",
+  "extends": "@repo/typescript-config/base.json",
   "compilerOptions": {
-    "outDir": "module"
+    "outDir": "dist",
+    "types": ["node", "vitest/globals"]
   },
-  "include": ["src"],
-  "exclude": ["node_modules", "module"]
+  "include": [
+    "src",
+    "__tests__",
+    "tsdown.config.ts",
+    "vitest.config.ts",
+    "vitest.setup.ts"
+  ],
+  "exclude": ["node_modules", "dist"]
 }

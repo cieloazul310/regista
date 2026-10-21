@@ -9,7 +9,7 @@ export default function Loading() {
       alignItems="center"
       justifyContent="center"
     >
-      <Circle size={24} bg="accent.10" />
+      <Circle size={24} bg="colorPalette.10" />
     </Flex>
   );
 }

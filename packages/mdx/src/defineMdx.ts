@@ -24,7 +24,7 @@ const defaultFrontmatterSchema = z.looseObject({
   draft: z.boolean(),
 });
 
-/* eslint-disable-next-line @typescript-eslint/no-unused-vars */
+/* oxlint-disable-next-line typescript/no-unused-vars */
 const defaultFrontmatterSchemaInput = defaultFrontmatterSchema.partial({
   lastmod: true,
   draft: true,

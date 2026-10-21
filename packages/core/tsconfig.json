@@ -1,8 +1,5 @@
 {
-  "extends": "@repo/typescript-config/mjs.json",
-  "compilerOptions": {
-    "outDir": "module"
-  },
-  "include": ["src"],
-  "exclude": ["node_modules", "module"]
+  "extends": "@repo/typescript-config/base.json",
+  "include": ["src", "tsdown.config.ts"],
+  "exclude": ["node_modules", "dist"]
 }

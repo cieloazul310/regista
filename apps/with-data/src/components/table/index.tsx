@@ -8,7 +8,7 @@ import { useTableStore } from "@/providers/table-store-provider";
 import type { Tab, Mode } from "@/types";
 import { Table, THead, TBody } from "./table";
 import Tabs from "./tabs";
-import { Tabs as ParkTabs } from "../ui/tabs";
+import * as ParkTabs from "../ui/tabs";
 import row from "./row";
 
 type FinancialTableProps = {
@@ -34,7 +34,7 @@ function FinancialTable({ items, mode }: FinancialTableProps) {
   return (
     <section
       className={flex({
-        bg: "bg.default",
+        bg: "gray.surface.bg",
         maxWidth: "full",
         direction: { base: "column", lg: "row" },
         gap: "md",

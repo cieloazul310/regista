@@ -3,11 +3,19 @@
   "description": "Simple and type-safe Markdown/MDX content management tool for Next.js App Router",
   "version": "1.2.1",
   "type": "module",
-  "main": "module/index.js",
-  "module": "module/index.js",
-  "types": "module/index.d.ts",
+  "main": "./dist/index.mjs",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.mts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.mts",
+      "import": "./dist/index.mjs",
+      "default": "./dist/index.mjs"
+    },
+    "./package.json": "./package.json"
+  },
   "files": [
-    "module"
+    "dist"
   ],
   "license": "MIT",
   "author": {
@@ -23,26 +31,22 @@
     "access": "public"
   },
   "scripts": {
-    "tsc": "tsc -p ./tsconfig.json",
-    "clean": "git clean -fx lib/ module/",
-    "build": "npm run clean && npm run tsc",
-    "dev": "npm run tsc -- --watch",
-    "lint": "eslint src __tests__ --fix"
+    "build": "tsdown",
+    "dev": "tsdown --watch",
+    "lint": "oxlint src __tests__ --fix"
   },
   "dependencies": {
     "@cieloazul310/regista-utils": "^1.2.1",
     "vfile": "^6.0.3",
     "vfile-matter": "^5.0.1",
-    "zod": "^4.1.12"
+    "zod": "^4.6.7"
   },
   "devDependencies": {
     "@mdx-js/mdx": "^3.1.1",
-    "@repo/eslint-config": "*",
     "@repo/typescript-config": "*",
-    "@types/react": "^19.2.2",
-    "@vitejs/plugin-react": "^5.2.0",
-    "eslint": "^9.38.0",
-    "react": "^19.2.0"
+    "@types/react": "^19.3.0",
+    "@vitejs/plugin-react": "^6.1.2",
+    "react": "^19.3.0"
   },
   "peerDependencies": {
     "@mdx-js/mdx": "^3.0.0",
@@ -51,7 +55,7 @@
   },
   "lint-staged": {
     "**/*.{js,cjs,mjs,ts}": [
-      "eslint --fix",
+      "oxlint --fix",
       "prettier --parser typescript --write"
     ]
   }

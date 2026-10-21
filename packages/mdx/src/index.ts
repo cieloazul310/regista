@@ -5,3 +5,4 @@ export {
   type MdxMetadata,
   type UseMDXOptions,
 } from "./defineMdx.js";
+export type { MDXComponents } from "mdx/types";
