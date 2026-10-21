@@ -1,5 +1,11 @@
 # @cieloazul310/regista
 
+## 1.3.0
+
+### Minor Changes
+
+- 88c3059: Change build tool to tsdown and change packages ESM-only
+
 ## 1.2.1
 
 ### Patch Changes
