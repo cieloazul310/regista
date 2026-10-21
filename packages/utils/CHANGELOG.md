@@ -1,5 +1,11 @@
 # @cieloazul310/regista
 
+## 1.3.1
+
+### Patch Changes
+
+- 35581e1: quick fix
+
 ## 1.3.0
 
 ### Minor Changes
