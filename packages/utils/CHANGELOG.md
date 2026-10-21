@@ -1,5 +1,11 @@
 # @cieloazul310/regista
 
+## 1.3.2
+
+### Patch Changes
+
+- bcd3fe1: update
+
 ## 1.3.1
 
 ### Patch Changes
