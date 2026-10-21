@@ -1,5 +1,14 @@
 # @cieloazul310/regista
 
+## 1.3.2
+
+### Patch Changes
+
+- bcd3fe1: update
+- Updated dependencies [bcd3fe1]
+  - @cieloazul310/regista-data@1.3.2
+  - @cieloazul310/regista-mdx@1.3.2
+
 ## 1.3.1
 
 ### Patch Changes
