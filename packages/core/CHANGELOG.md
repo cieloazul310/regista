@@ -1,5 +1,14 @@
 # @cieloazul310/regista
 
+## 1.3.1
+
+### Patch Changes
+
+- 35581e1: quick fix
+- Updated dependencies [35581e1]
+  - @cieloazul310/regista-data@1.3.1
+  - @cieloazul310/regista-mdx@1.3.1
+
 ## 1.3.0
 
 ### Minor Changes
