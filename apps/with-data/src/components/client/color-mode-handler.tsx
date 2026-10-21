@@ -3,8 +3,8 @@
 import { useState, useEffect, useMemo } from "react";
 import { useTheme } from "next-themes";
 import { MdSunny, MdOutlineNightlight, MdComputer } from "react-icons/md";
-import { Tooltip } from "../ui/tooltip";
 import { IconButton, type IconButtonProps } from "../ui/icon-button";
+import { Tooltip } from "../ui/tooltip";
 
 /**
  * reference:
@@ -32,25 +32,22 @@ function ColorModeHandler({ className, ...props }: IconButtonProps) {
   }
 
   return (
-    <Tooltip.Root openDelay={250} closeDelay={250} closeOnPointerDown>
-      <Tooltip.Trigger asChild>
-        <IconButton
-          className={className}
-          variant="ghost"
-          onClick={onClick}
-          aria-label={`Change to ${next} mode.`}
-          {...props}
-        >
-          {icon}
-        </IconButton>
-      </Tooltip.Trigger>
-      <Tooltip.Positioner>
-        <Tooltip.Arrow>
-          <Tooltip.ArrowTip />
-        </Tooltip.Arrow>
-        <Tooltip.Content>Change to {next} mode.</Tooltip.Content>
-      </Tooltip.Positioner>
-    </Tooltip.Root>
+    <Tooltip
+      content={`Change to ${next} mode.`}
+      openDelay={250}
+      closeDelay={250}
+      closeOnPointerDown
+    >
+      <IconButton
+        className={className}
+        variant="plain"
+        onClick={onClick}
+        aria-label={`Change to ${next} mode.`}
+        {...props}
+      >
+        {icon}
+      </IconButton>
+    </Tooltip>
   );
 }
 

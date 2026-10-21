@@ -13,7 +13,7 @@ function Header() {
         top: 0,
         direction: "row",
         gap: "sm",
-        bg: "bg.canvas",
+        bg: "gray.surface.bg",
         height: "header-height",
         alignItems: "center",
         shadow: "md",

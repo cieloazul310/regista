@@ -27,4 +27,4 @@ const article = definePattern({
   },
 });
 
-export default { article };
+export const patterns = { article };

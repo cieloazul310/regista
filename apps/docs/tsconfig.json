@@ -6,7 +6,6 @@
         "name": "next"
       }
     ],
-    "rootDir": "../../",
     "paths": {
       "@/*": ["./src/*"],
       "styled-system/*": ["./styled-system/*"]
@@ -16,7 +15,6 @@
     "next-env.d.ts",
     "next.config.mjs",
     "panda.config.ts",
-    "postcss.config.cjs",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",

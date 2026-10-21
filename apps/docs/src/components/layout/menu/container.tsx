@@ -3,7 +3,7 @@ import { useCollapsible } from "@ark-ui/react/collapsible";
 import { LuChevronRight } from "react-icons/lu";
 import { cva } from "styled-system/css";
 import { VStack } from "styled-system/jsx";
-import { Collapsible } from "../../ui/collapsible";
+import * as Collapsible from "../../ui/collapsible";
 import { Button, type ButtonProps } from "../../ui/button";
 
 const indicatorRecipe = cva({
@@ -47,7 +47,7 @@ export type MenuItemProps = MenuItemNode & ButtonProps;
 export function MenuItem({ id, name, ...props }: MenuItemProps) {
   return (
     <Button
-      variant="ghost"
+      variant="plain"
       colorPalette="current"
       width="full"
       justifyContent="start"
@@ -72,7 +72,7 @@ export function MenuGroup({ id, name, children, current }: MenuGroupProps) {
   return (
     <Collapsible.RootProvider value={collapsible}>
       <Collapsible.Trigger asChild>
-        <Button variant="ghost" width="full" justifyContent="space-between">
+        <Button variant="plain" width="full" justifyContent="space-between">
           {name}
           <CollapsibleIndicator open={collapsible.open} />
         </Button>

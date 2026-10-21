@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import NextLink from "next/link";
 import { flex } from "styled-system/patterns";
 import { Heading } from "../ui/heading";
 import ColorModeHandler from "../client/color-mode-handler";
@@ -17,7 +18,7 @@ function Header({ title }: HeaderProps) {
         top: 0,
         direction: "row",
         gap: "sm",
-        bg: "bg.canvas",
+        bg: "gray.surface.bg",
         height: "header-height",
         alignItems: "center",
         shadow: "md",
@@ -26,7 +27,7 @@ function Header({ title }: HeaderProps) {
       })}
     >
       <Heading as="h1" flexGrow={1}>
-        {title}
+        <NextLink href="/">Regista</NextLink>
       </Heading>
       <Address />
       <ColorModeHandler />

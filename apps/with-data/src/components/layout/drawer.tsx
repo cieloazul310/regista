@@ -1,12 +1,11 @@
 import { LuX, LuMenu } from "react-icons/lu";
 import { css } from "styled-system/css";
 import ColorModeHandler from "../client/color-mode-handler";
-import { Button } from "../ui/button";
 import { IconButton } from "../ui/icon-button";
-import { Drawer as ParkDrawer } from "../ui/drawer";
+import * as ParkDrawer from "../ui/drawer";
 import Menu from "./menu";
 
-function Drawer(props: ParkDrawer.RootProps) {
+function DrawerServer(props: ParkDrawer.RootProps) {
   return (
     <ParkDrawer.Root {...props}>
       <ParkDrawer.Trigger asChild>
@@ -16,6 +15,7 @@ function Drawer(props: ParkDrawer.RootProps) {
             bottom: 4,
             right: 4,
             zIndex: "banner",
+            hideFrom: "md",
             shadow: "lg",
           })}
           size="xl"
@@ -37,7 +37,7 @@ function Drawer(props: ParkDrawer.RootProps) {
               top="3"
               right="4"
             >
-              <IconButton variant="ghost">
+              <IconButton variant="plain">
                 <LuX />
               </IconButton>
             </ParkDrawer.CloseTrigger>
@@ -47,9 +47,6 @@ function Drawer(props: ParkDrawer.RootProps) {
           </ParkDrawer.Body>
           <ParkDrawer.Footer gap="3">
             <ColorModeHandler />
-            <ParkDrawer.CloseTrigger asChild>
-              <Button variant="outline">Close</Button>
-            </ParkDrawer.CloseTrigger>
           </ParkDrawer.Footer>
         </ParkDrawer.Content>
       </ParkDrawer.Positioner>
@@ -57,4 +54,4 @@ function Drawer(props: ParkDrawer.RootProps) {
   );
 }
 
-export default Drawer;
+export default DrawerServer;

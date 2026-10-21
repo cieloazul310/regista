@@ -5,7 +5,7 @@ import { IconButton } from "../ui/icon-button";
 
 function AddressIcon({ children, href, ...props }: ComponentProps<"a">) {
   return (
-    <IconButton variant="ghost" asChild>
+    <IconButton variant="plain" asChild>
       <a
         href={href}
         target="_blank"

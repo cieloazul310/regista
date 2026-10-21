@@ -6,17 +6,17 @@
         "name": "next"
       }
     ],
-    "rootDir": "../../",
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
       "styled-system/*": ["./styled-system/*"]
-    }
+    },
+    "ignoreDeprecations": "6.0"
   },
   "include": [
     "next-env.d.ts",
     "next.config.mjs",
     "panda.config.ts",
-    "postcss.config.cjs",
     "**/*.ts",
     "**/*.tsx",
     ".next/types/**/*.ts",

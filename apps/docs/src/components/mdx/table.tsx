@@ -1,5 +1,5 @@
 import type { ComponentPropsWithoutRef } from "react";
-import { Table as ParkTable } from "../ui/table";
+import * as ParkTable from "../ui/table";
 
 type TableTags = "table" | "thead" | "tbody" | "tr" | "th" | "td";
 
@@ -9,7 +9,7 @@ export default function createTables(): Record<
 > {
   return {
     table: (props: ComponentPropsWithoutRef<"table">) => (
-      <ParkTable.Root variant="outline" {...props} />
+      <ParkTable.Root variant="plain" {...props} />
     ),
     thead: (props: ComponentPropsWithoutRef<"thead">) => (
       <ParkTable.Head {...props} />
@@ -28,7 +28,7 @@ export default function createTables(): Record<
 }
 
 export function Table(props: ComponentPropsWithoutRef<"table">) {
-  return <ParkTable.Root variant="outline" {...props} />;
+  return <ParkTable.Root variant="plain" {...props} />;
 }
 
 export function Thead(props: ComponentPropsWithoutRef<"thead">) {
