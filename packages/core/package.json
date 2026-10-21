@@ -1,7 +1,7 @@
 {
   "name": "@cieloazul310/regista",
   "description": "Simple and type-safe Markdown/MDX content management tool for Next.js App Router",
-  "version": "1.3.2",
+  "version": "1.3.3",
   "license": "MIT",
   "author": {
     "name": "@cieloazul310",
@@ -42,8 +42,8 @@
     "lint": "oxlint src --fix"
   },
   "dependencies": {
-    "@cieloazul310/regista-data": "^1.3.2",
-    "@cieloazul310/regista-mdx": "^1.3.2"
+    "@cieloazul310/regista-data": "^1.3.3",
+    "@cieloazul310/regista-mdx": "^1.3.3"
   },
   "devDependencies": {
     "@repo/typescript-config": "*"
