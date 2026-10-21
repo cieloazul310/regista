@@ -23,8 +23,8 @@ export function THead({ children }: PropsWithChildren) {
     <thead
       className={css({
         zIndex: 1,
-        bg: "bg.default",
-        borderBottomColor: "accent.4",
+        bg: "gray.surface.bg",
+        borderBottomColor: "colorPalette.4",
         borderBottomWidth: "1px",
       })}
     >
@@ -43,9 +43,9 @@ export function TBodyRow({ children }: PropsWithChildren) {
   return (
     <tr
       className={css({
-        borderBottomColor: "accent.4",
+        borderBottomColor: "colorPalette.4",
         borderBottomWidth: "1px",
-        _hover: { bg: "accent.a2" },
+        _hover: { bg: "colorPalette.a2" },
       })}
     >
       {children}

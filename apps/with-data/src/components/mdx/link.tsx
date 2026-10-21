@@ -8,7 +8,11 @@ function isInternal(href: ComponentProps<"a">["href"]) {
 }
 
 const linkStyle = css({
-  color: { base: "accent.9", _hover: "accent.7", _active: "accent.10" },
+  color: {
+    base: "colorPalette.10",
+    _hover: "colorPalette.8",
+    _active: "colorPalette.11",
+  },
 });
 
 function Link({ href, children, ...props }: ComponentProps<"a">) {

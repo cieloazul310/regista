@@ -5,8 +5,8 @@ export default function Code(props: React.ComponentProps<"code">) {
     <code
       className={css({
         ":not(pre) > &": {
-          color: "accent.12",
-          bg: "accent.a4",
+          color: "colorPalette.12",
+          bg: "colorPalette.a4",
           px: "xs",
           rounded: "md",
         },

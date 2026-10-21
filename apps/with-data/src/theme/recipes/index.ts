@@ -17,12 +17,12 @@ export const recipes = {
   text,
   group,
   absoluteCenter,
-  tabs,
   skeleton,
 };
 export const slotRecipes = {
   collapsible,
   drawer,
   table,
+  tabs,
   tooltip,
 };

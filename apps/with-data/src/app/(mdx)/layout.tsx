@@ -32,7 +32,7 @@ export default function Layout({ children }: PropsWithChildren) {
               overflowY: undefined,
               px: "sm",
               pt: "lg",
-              bg: "bg.default",
+              bg: "gray.surface.bg",
               rounded: "l2",
               md: {
                 width: "sidebar-width",
@@ -51,7 +51,7 @@ export default function Layout({ children }: PropsWithChildren) {
               gap: "lg",
               alignItems: "stretch",
               flexGrow: 1,
-              bg: "bg.default",
+              bg: "gray.surface.bg",
               rounded: "l2",
               width: "full",
               maxWidth: "main-width",

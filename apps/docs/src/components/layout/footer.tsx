@@ -10,7 +10,7 @@ function Footer() {
       className={vstack({
         width: "full",
         gap: "md",
-        bg: "bg.muted",
+        bg: "gray.subtle.bg",
         alignItems: "center",
         py: "lg",
       })}
