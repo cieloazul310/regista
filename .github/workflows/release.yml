@@ -49,6 +49,7 @@ jobs:
           node-version: "lts/*"
           cache: ${{ steps.detect-package-manager.outputs.manager }}
           cache-dependency-path: ./package-lock.json
+          registry-url: 'https://registry.npmjs.org'
 
       - name: Install dependencies
         run: ${{ steps.detect-package-manager.outputs.manager }} ${{ steps.detect-package-manager.outputs.command }}
@@ -58,7 +59,5 @@ jobs:
         uses: changesets/action@v2
         with:
           # This expects you to have a script called release which does a build for your packages and calls changeset publish
+          version-script: ${{ steps.detect-package-manager.outputs.manager }} run version
           publish-script: ${{ steps.detect-package-manager.outputs.manager }} run publish-packages
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
