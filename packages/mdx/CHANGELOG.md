@@ -1,5 +1,13 @@
 # @cieloazul310/regista
 
+## 1.3.3
+
+### Patch Changes
+
+- d511e6e: package.json
+- Updated dependencies [d511e6e]
+  - @cieloazul310/regista-utils@1.3.3
+
 ## 1.3.2
 
 ### Patch Changes
